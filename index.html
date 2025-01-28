@@ -317,5 +317,74 @@
                 });
         });
     </script>
+	<script>
+    // Fonction pour mettre à jour les valeurs des sliders
+    function updateSliderValue(sliderId, outputId, unit = '') {
+        const slider = document.getElementById(sliderId);
+        const output = document.getElementById(outputId);
+
+        slider.addEventListener('input', function() {
+            output.textContent = this.value + unit;
+            updateTotalScore();
+        });
+    }
+
+    // Fonction pour mettre à jour le score total
+    function updateTotalScore() {
+        const natationDistance = parseInt(document.getElementById('natation-distance').value);
+        const cyclismeDistance = parseInt(document.getElementById('cyclisme-distance').value);
+        const courseDistance = parseInt(document.getElementById('course-distance').value);
+
+        const totalScore = natationDistance + cyclismeDistance + courseDistance;
+        document.getElementById('total-score').textContent = totalScore;
+    }
+
+    // Fonction pour réinitialiser les sliders
+    function reinitialiserSliders() {
+        document.getElementById('natation-distance').value = 0;
+        document.getElementById('cyclisme-distance').value = 0;
+        document.getElementById('course-distance').value = 0;
+
+        document.getElementById('natation-distance-output').textContent = 0;
+        document.getElementById('cyclisme-distance-output').textContent = 0;
+        document.getElementById('course-distance-output').textContent = 0;
+
+        document.getElementById('natation-allure-output').textContent = '0:00';
+        document.getElementById('cyclisme-vitesse-output').textContent = 0;
+        document.getElementById('course-allure-output').textContent = '0:00';
+
+        updateTotalScore();
+    }
+
+    // Mettre à jour les valeurs des sliders au chargement de la page
+    document.addEventListener('DOMContentLoaded', function () {
+        updateSliderValue('natation-distance', 'natation-distance-output', ' km');
+        updateSliderValue('cyclisme-distance', 'cyclisme-distance-output', ' km');
+        updateSliderValue('course-distance', 'course-distance-output', ' km');
+
+        // Mettre à jour les allures et vitesses nécessaires
+        const natationSlider = document.getElementById('natation-distance');
+        const cyclismeSlider = document.getElementById('cyclisme-distance');
+        const courseSlider = document.getElementById('course-distance');
+
+        natationSlider.addEventListener('input', function() {
+            const distance = this.value;
+            const allure = (distance > 0) ? (24 / distance).toFixed(2) : 0;
+            document.getElementById('natation-allure-output').textContent = `${allure}:00`;
+        });
+
+        cyclismeSlider.addEventListener('input', function() {
+            const distance = this.value;
+            const vitesse = (distance > 0) ? (500 / distance).toFixed(2) : 0;
+            document.getElementById('cyclisme-vitesse-output').textContent = vitesse;
+        });
+
+        courseSlider.addEventListener('input', function() {
+            const distance = this.value;
+            const allure = (distance > 0) ? (24 / distance).toFixed(2) : 0;
+            document.getElementById('course-allure-output').textContent = `${allure}:00`;
+        });
+    });
+</script>
 </body>
 </html>
