@@ -44,13 +44,19 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
+		subLabel {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: lighter;
+        }
         select, input {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 4px;
             border: 1px solid #ccc;
         }
+		
         button {
             background-color: #28a745;
             color: #fff;
@@ -84,6 +90,7 @@
             opacity: 0.5;
             background-color: #ccc;
         }
+		   
         @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
@@ -92,6 +99,8 @@
                 padding: 10px;
             }
         }
+
+		
     </style>
 </head>
 <body>
@@ -99,6 +108,7 @@
     <div class="container">
         <!-- Formulaire de paris -->
         <form id="betForm">
+		
             <label for="participant">Votre nom :</label>
             <select id="participant" name="participant" required>
                 <option value="">Sélectionnez votre nom</option>
@@ -115,30 +125,43 @@
                 <option value="Teddy">Teddy</option>
                 <option value="Encore un à définir">Encore un à définir</option>
             </select>
-
-            <label>Définissez l'ordre du podium :</label>
+<img src ="https://github.com/AlexisGavinet/t_24_bets/blob/main/PODIUM.png">
+			<label>Définissez l'ordre du podium :</label>
             <div id="podium">
                 <div class="pillule" data-team="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</div>
                 <div class="pillule" data-team="Les San'slips">Les San'slips</div>
                 <div class="pillule" data-team="La Pepouze team">La Pepouze team</div>
             </div>
+			<label>Nombre de point par equipe : </label>
+			<table border="0" style="border-collapse: collapse; width: 100%; text-align: center;">
+    <tr>
+        <!-- Ligne 1 : Noms des équipes -->
+        <th>Quadricolor</th>
+        <th>Les San'slips</th>
+        <th>La Pepouze team</th>
+    </tr>
+    <tr>
+        <!-- Ligne 2 : Inputs -->
+        <td>
+            <input type="number" id="points_quadri" name="points_quadri" min="0" required>
+        </td>
+        <td>
+            <input type="number" id="points_san" name="points_san" min="0" required>
+        </td>
+        <td>
+            <input type="number" id="points_pep" name="points_pep" min="0" required>
+        </td>
+    </tr>
+</table>
 
             <!-- Nouveaux paris -->
             <label for="points-equipe">Nombre de points par équipe :</label>
             <select id="points-equipe" name="points-equipe" required>
-                <option value="">Sélectionnez votre nom</option>
-                <option value="Alexis">Alexis</option>
-                <option value="Baptiste">Baptiste</option>
-                <option value="Kevin">Kevin</option>
-                <option value="Maxime">Maxime</option>
-                <option value="Anthony">Anthony</option>
-                <option value="Antoine">Antoine</option>
-                <option value="François">François</option>
-                <option value="Tristan">Tristan</option>
-                <option value="Julien">Julien</option>
-                <option value="Pierre-Jean">Pierre-Jean</option>
-                <option value="Teddy">Teddy</option>
-                <option value="Encore un à définir">Encore un à définir</option>
+                <option value="">Sélectionnez l'equipe</option>
+                <option value="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</option>
+                <option value="Les San'slips">Les San'slips</option>
+                <option value="La Pepouze team">La Pepouze team</option>
+                
             </select>
 
             <label for="meilleur-nageur-vitesse">Meilleur nageur (vitesse) :</label>
@@ -192,14 +215,123 @@
                 <option value="Encore un à définir">Encore un à définir</option>
             </select>
 
-            <label for="meilleur-nageur-tours">Meilleur nageur (nombre de tours) :</label>
-            <input type="number" id="meilleur-nageur-tours" name="meilleur-nageur-tours" min="0" required>
+            <!-- Meilleur nageur (nombre de tours) -->
 
-            <label for="meilleur-rouleur-tours">Meilleur rouleur (nombre de tours) :</label>
-            <input type="number" id="meilleur-rouleur-tours" name="meilleur-rouleur-tours" min="0" required>
 
-            <label for="meilleur-coureur-tours">Meilleur coureur (nombre de tours) :</label>
-            <input type="number" id="meilleur-coureur-tours" name="meilleur-coureur-tours" min="0" required>
+<table border="0" style="border-collapse: collapse; width: 100%; text-align: center; padding:5;">
+					<tr>
+							<!-- Ligne 2 : Inputs -->
+							<td><label for="meilleur-nageur-tours-nom">Meilleur nageur (nombre de tours) :</label></td>
+							<td>
+								<select id="meilleur-nageur-tours-nom" name="meilleur-nageur-tours-nom" required>
+						<option value="">Sélectionnez un participant</option>
+						<option value="Alexis">Alexis</option>
+						<option value="Baptiste">Baptiste</option>
+						<option value="Kevin">Kevin</option>
+						<option value="Maxime">Maxime</option>
+						<option value="Anthony">Anthony</option>
+						<option value="Antoine">Antoine</option>
+						<option value="François">François</option>
+						<option value="Tristan">Tristan</option>
+						<option value="Julien">Julien</option>
+						<option value="Pierre-Jean">Pierre-Jean</option>
+						<option value="Teddy">Teddy</option>
+						<option value="Encore un à définir">Encore un à définir</option>
+					</select>
+							</td>
+        <td>
+            <input type="number" id="meilleur-nageur-tours-nombre" name="meilleur-nageur-tours-nombre" min="0" required>
+        </td>
+		</tr>
+					<tr>
+							<!-- Ligne 2 : Inputs -->
+							<td><label for="meilleur-rouleur-tours-nom">Meilleur rouleur (nombre de tours) :</label></td>
+							<td>
+								<select id="meilleur-rouleur-tours-nom" name="meilleur-rouleur-tours-nom" required>
+						<option value="">Sélectionnez un participant</option>
+						<option value="Alexis">Alexis</option>
+						<option value="Baptiste">Baptiste</option>
+						<option value="Kevin">Kevin</option>
+						<option value="Maxime">Maxime</option>
+						<option value="Anthony">Anthony</option>
+						<option value="Antoine">Antoine</option>
+						<option value="François">François</option>
+						<option value="Tristan">Tristan</option>
+						<option value="Julien">Julien</option>
+						<option value="Pierre-Jean">Pierre-Jean</option>
+						<option value="Teddy">Teddy</option>
+						<option value="Encore un à définir">Encore un à définir</option>
+					</select>
+							</td>
+        <td>
+            <input type="number" id="meilleur-rouleur-tours-nombre" name="meilleur-rouleur-tours-nombre" min="0" required>
+        </td>
+		</tr>
+		
+		
+					<tr>
+							<!-- Ligne 2 : Inputs -->
+							<td><label for="meilleur-coureur-tours-nom">Meilleur coureur (nombre de tours) :</label></td>
+							<td>
+								<select id="meilleur-coureur-tours-nom" name="meilleur-coureur-tours-nom" required>
+						<option value="">Sélectionnez un participant</option>
+						<option value="Alexis">Alexis</option>
+						<option value="Baptiste">Baptiste</option>
+						<option value="Kevin">Kevin</option>
+						<option value="Maxime">Maxime</option>
+						<option value="Anthony">Anthony</option>
+						<option value="Antoine">Antoine</option>
+						<option value="François">François</option>
+						<option value="Tristan">Tristan</option>
+						<option value="Julien">Julien</option>
+						<option value="Pierre-Jean">Pierre-Jean</option>
+						<option value="Teddy">Teddy</option>
+						<option value="Encore un à définir">Encore un à définir</option>
+					</select>
+							</td>
+        <td>
+            <input type="number" id="meilleur-coureur-tours-nombre" name="meilleur-coureur-tours-nombre" min="0" required>
+        </td>
+		</tr>
+</table>
+
+<!-- Meilleur rouleur (nombre de tours) 
+<label for="meilleur-rouleur-tours-nom">Meilleur rouleur (nombre de tours) :</label>
+<select id="meilleur-rouleur-tours-nom" name="meilleur-rouleur-tours-nom" required>
+    <option value="">Sélectionnez un participant</option>
+    <option value="Alexis">Alexis</option>
+    <option value="Baptiste">Baptiste</option>
+    <option value="Kevin">Kevin</option>
+    <option value="Maxime">Maxime</option>
+    <option value="Anthony">Anthony</option>
+    <option value="Antoine">Antoine</option>
+    <option value="François">François</option>
+    <option value="Tristan">Tristan</option>
+    <option value="Julien">Julien</option>
+    <option value="Pierre-Jean">Pierre-Jean</option>
+    <option value="Teddy">Teddy</option>
+    <option value="Encore un à définir">Encore un à définir</option>
+</select>
+<input type="number" id="meilleur-rouleur-tours-nombre" name="meilleur-rouleur-tours-nombre" min="0" required>
+
+<!-- Meilleur coureur (nombre de tours) 
+<label for="meilleur-coureur-tours-nom">Meilleur coureur (nombre de tours) :</label>
+<select id="meilleur-coureur-tours-nom" name="meilleur-coureur-tours-nom" required>
+    <option value="">Sélectionnez un participant</option>
+    <option value="Alexis">Alexis</option>
+    <option value="Baptiste">Baptiste</option>
+    <option value="Kevin">Kevin</option>
+    <option value="Maxime">Maxime</option>
+    <option value="Anthony">Anthony</option>
+    <option value="Antoine">Antoine</option>
+    <option value="François">François</option>
+    <option value="Tristan">Tristan</option>
+    <option value="Julien">Julien</option>
+    <option value="Pierre-Jean">Pierre-Jean</option>
+    <option value="Teddy">Teddy</option>
+    <option value="Encore un à définir">Encore un à définir</option>
+</select>
+<input type="number" id="meilleur-coureur-tours-nombre" name="meilleur-coureur-tours-nombre" min="0" required>-->
 
             <label for="meilleur-fumeur">Meilleur fumeur :</label>
             <select id="meilleur-fumeur" name="meilleur-fumeur" required>
@@ -346,38 +478,59 @@
             }
 
             // Récupérer les valeurs des nouveaux paris
-            const pointsEquipe = document.getElementById('points-equipe').value;
-            const meilleurNageurVitesse = document.getElementById('meilleur-nageur-vitesse').value;
-            const meilleurRouleurVitesse = document.getElementById('meilleur-rouleur-vitesse').value;
-            const meilleurCoureurVitesse = document.getElementById('meilleur-coureur-vitesse').value;
-            const meilleurNageurTours = document.getElementById('meilleur-nageur-tours').value;
-            const meilleurRouleurTours = document.getElementById('meilleur-rouleur-tours').value;
-            const meilleurCoureurTours = document.getElementById('meilleur-coureur-tours').value;
-            const meilleurFumeur = document.getElementById('meilleur-fumeur').value;
-            const meilleurBuveur = document.getElementById('meilleur-buveur').value;
-            const plusGrosDormeur = document.getElementById('plus-gros-dormeur').value;
-            const abandonBlessure = document.getElementById('abandon-blessure').value;
-            const abandonMeteo = document.getElementById('abandon-meteo').value;
+const pointsEquipe = document.getElementById('points-equipe').value;
+const meilleurNageurVitesse = document.getElementById('meilleur-nageur-vitesse').value;
+const meilleurRouleurVitesse = document.getElementById('meilleur-rouleur-vitesse').value;
+const meilleurCoureurVitesse = document.getElementById('meilleur-coureur-vitesse').value;
 
-            // Enregistrer le pari dans Firebase
-            const betData = {
-                participant: participant,
-                firstPlace: firstPlace,
-                secondPlace: secondPlace,
-                thirdPlace: thirdPlace,
-                pointsEquipe: pointsEquipe,
-                meilleurNageurVitesse: meilleurNageurVitesse,
-                meilleurRouleurVitesse: meilleurRouleurVitesse,
-                meilleurCoureurVitesse: meilleurCoureurVitesse,
-                meilleurNageurTours: meilleurNageurTours,
-                meilleurRouleurTours: meilleurRouleurTours,
-                meilleurCoureurTours: meilleurCoureurTours,
-                meilleurFumeur: meilleurFumeur,
-                meilleurBuveur: meilleurBuveur,
-                plusGrosDormeur: plusGrosDormeur,
-                abandonBlessure: abandonBlessure,
-                abandonMeteo: abandonMeteo,
-                timestamp: new Date().toISOString()
+// Récupérer les valeurs pour les tours
+const meilleurNageurToursNom = document.getElementById('meilleur-nageur-tours-nom').value;
+const meilleurNageurToursNombre = document.getElementById('meilleur-nageur-tours-nombre').value;
+const meilleurRouleurToursNom = document.getElementById('meilleur-rouleur-tours-nom').value;
+const meilleurRouleurToursNombre = document.getElementById('meilleur-rouleur-tours-nombre').value;
+const meilleurCoureurToursNom = document.getElementById('meilleur-coureur-tours-nom').value;
+const meilleurCoureurToursNombre = document.getElementById('meilleur-coureur-tours-nombre').value;
+
+const meilleurFumeur = document.getElementById('meilleur-fumeur').value;
+const meilleurBuveur = document.getElementById('meilleur-buveur').value;
+const plusGrosDormeur = document.getElementById('plus-gros-dormeur').value;
+const abandonBlessure = document.getElementById('abandon-blessure').value;
+const abandonMeteo = document.getElementById('abandon-meteo').value;
+const pointquadri = document.getElementById('points_quadri').value;
+const pointsan = document.getElementById('points_san').value;
+const pointpep = document.getElementById('points_pep').value;
+
+// Enregistrer le pari dans Firebase
+const betData = {
+	pointquadri : pointquadri,
+	pointsan : pointsan,
+	pointpep : pointpep,
+    participant: participant,
+    firstPlace: firstPlace,
+    secondPlace: secondPlace,
+    thirdPlace: thirdPlace,
+    pointsEquipe: pointsEquipe,
+    meilleurNageurVitesse: meilleurNageurVitesse,
+    meilleurRouleurVitesse: meilleurRouleurVitesse,
+    meilleurCoureurVitesse: meilleurCoureurVitesse,
+    meilleurNageurTours: {
+        nom: meilleurNageurToursNom,
+        tours: meilleurNageurToursNombre
+    },
+    meilleurRouleurTours: {
+        nom: meilleurRouleurToursNom,
+        tours: meilleurRouleurToursNombre
+    },
+    meilleurCoureurTours: {
+        nom: meilleurCoureurToursNom,
+        tours: meilleurCoureurToursNombre
+    },
+    meilleurFumeur: meilleurFumeur,
+    meilleurBuveur: meilleurBuveur,
+    plusGrosDormeur: plusGrosDormeur,
+    abandonBlessure: abandonBlessure,
+    abandonMeteo: abandonMeteo,
+    timestamp: new Date().toISOString()
             };
 
             push(ref(database, 'bets/'), betData)
