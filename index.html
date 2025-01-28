@@ -4,22 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paris Triathlon T24</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 20px;
+            color: #333;
         }
         h1 {
-            color: #333;
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .slider-container {
+            margin-bottom: 30px;
+        }
+        .slider-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .slider {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 10px;
+            background: #ddd;
+            outline: none;
+            border-radius: 5px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .slider:hover {
+            opacity: 1;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #3498db;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #3498db;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .slider-output {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .output {
+            font-weight: bold;
+            color: #3498db;
+        }
+        .total {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.5em;
+            color: #27ae60;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 5px;
+        }
+        .icon {
+            margin-right: 10px;
+            color: #3498db;
         }
         form {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin-top: 30px;
         }
         label {
             display: block;
@@ -44,109 +122,241 @@
         button:hover {
             background-color: #218838;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f8f9fa;
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .container {
+                padding: 10px;
+            }
+            .slider-container label {
+                font-size: 1em;
+            }
+            .slider-output {
+                font-size: 0.8em;
+            }
+            .total {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Paris Triathlon T24</h1>
-    <p>Faites vos paris pour le podium !</p>
-    
-    <form id="betForm">
-        <label for="participant">Votre nom :</label>
-        <select id="participant" name="participant" required>
-            <option value="">Sélectionnez votre nom</option>
-            <option value="Alexis">Alexis</option>
-            <option value="Baptiste">Baptiste</option>
-            <option value="Kevin">Kevin</option>
-            <option value="Maxime">Maxime</option>
-            <option value="Anthony">Anthony</option>
-            <option value="Antoine">Antoine</option>
-            <option value="François">François</option>
-            <option value="Tristan">Tristan</option>
-            <option value="Julien">Julien</option>
-            <option value="Pierre-Jean">Pierre-Jean</option>
-            <option value="Teddy">Teddy</option>
-            <option value="Encore un à définir">Encore un à définir</option>
-        </select>
+    <div class="container">
+        <!-- Sliders pour le calculateur de points -->
+        <div class="slider-container">
+            <label for="natation-distance">
+                <i class="fas fa-swimmer icon"></i>Natation - Distance (km) : <span class="output" id="natation-distance-output">0</span>
+            </label>
+            <input type="range" id="natation-distance" class="slider" min="0" max="20" value="0" step="1">
+            <div class="slider-output">
+                <span>0 km</span>
+                <span>20 km</span>
+            </div>
+            <label>Allure nécessaire (pour 100 m) : <span class="output" id="natation-allure-output">0:00</span></label>
+        </div>
 
-        <label for="firstPlace">1ère place :</label>
-        <select id="firstPlace" name="firstPlace" required>
-            <option value="">Sélectionnez l'équipe</option>
-            <option value="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</option>
-            <option value="Les San'slips">Les San'slips</option>
-            <option value="La Pepouze team">La Pepouze team</option>
-        </select>
+        <div class="slider-container">
+            <label for="cyclisme-distance">
+                <i class="fas fa-bicycle icon"></i>Cyclisme - Distance (km) : <span class="output" id="cyclisme-distance-output">0</span>
+            </label>
+            <input type="range" id="cyclisme-distance" class="slider" min="0" max="500" value="0" step="21">
+            <div class="slider-output">
+                <span>0 km</span>
+                <span>500 km</span>
+            </div>
+            <label>Vitesse nécessaire (km/h) : <span class="output" id="cyclisme-vitesse-output">0</span></label>
+        </div>
 
-        <label for="secondPlace">2ème place :</label>
-        <select id="secondPlace" name="secondPlace" required>
-            <option value="">Sélectionnez l'équipe</option>
-            <option value="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</option>
-            <option value="Les San'slips">Les San'slips</option>
-            <option value="La Pepouze team">La Pepouze team</option>
-        </select>
+        <div class="slider-container">
+            <label for="course-distance">
+                <i class="fas fa-running icon"></i>Course à pied - Distance (km) : <span class="output" id="course-distance-output">0</span>
+            </label>
+            <input type="range" id="course-distance" class="slider" min="0" max="150" value="0" step="4">
+            <div class="slider-output">
+                <span>0 km</span>
+                <span>150 km</span>
+            </div>
+            <label>Allure nécessaire (pour 1000 m) : <span class="output" id="course-allure-output">0:00</span></label>
+        </div>
 
-        <label for="thirdPlace">3ème place :</label>
-        <select id="thirdPlace" name="thirdPlace" required>
-            <option value="">Sélectionnez l'équipe</option>
-            <option value="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</option>
-            <option value="Les San'slips">Les San'slips</option>
-            <option value="La Pepouze team">La Pepouze team</option>
-        </select>
+        <!-- Résultat du calculateur de points -->
+        <div class="total">
+            <p>Score total : <span id="total-score">0</span> points</p>
+        </div>
 
-        <button type="submit">Soumettre le pari</button>
-    </form>
+        <!-- Bouton de réinitialisation -->
+        <button onclick="reinitialiserSliders()" style="margin-top: 20px; padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Réinitialiser
+        </button>
 
-    <h2>Liste des paris</h2>
-    <table id="betsTable" border="1" cellpadding="10" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Participant</th>
-                <th>1ère place</th>
-                <th>2ème place</th>
-                <th>3ème place</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Les paris seront ajoutés ici dynamiquement -->
-        </tbody>
-    </table>
+        <!-- Formulaire de paris -->
+        <form id="betForm">
+            <label for="participant">Votre nom :</label>
+            <select id="participant" name="participant" required>
+                <option value="">Sélectionnez votre nom</option>
+                <option value="Alexis">Alexis</option>
+                <option value="Baptiste">Baptiste</option>
+                <option value="Kevin">Kevin</option>
+                <option value="Maxime">Maxime</option>
+                <option value="Anthony">Anthony</option>
+                <option value="Antoine">Antoine</option>
+                <option value="François">François</option>
+                <option value="Tristan">Tristan</option>
+                <option value="Julien">Julien</option>
+                <option value="Pierre-Jean">Pierre-Jean</option>
+                <option value="Teddy">Teddy</option>
+                <option value="Encore un à définir">Encore un à définir</option>
+            </select>
 
-    <!-- Ajoutez Firebase SDK via CDN (ES Modules) -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+            <label for="firstPlace">1ère place :</label>
+            <select id="firstPlace" name="firstPlace" required>
+                <option value="">Sélectionnez l'équipe</option>
+                <option value="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</option>
+                <option value="Les San'slips">Les San'slips</option>
+                <option value="La Pepouze team">La Pepouze team</option>
+            </select>
 
-        // Your web app's Firebase configuration
+            <label for="secondPlace">2ème place :</label>
+            <select id="secondPlace" name="secondPlace" required>
+                <option value="">Sélectionnez l'équipe</option>
+                <option value="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</option>
+                <option value="Les San'slips">Les San'slips</option>
+                <option value="La Pepouze team">La Pepouze team</option>
+            </select>
+
+            <label for="thirdPlace">3ème place :</label>
+            <select id="thirdPlace" name="thirdPlace" required>
+                <option value="">Sélectionnez l'équipe</option>
+                <option value="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</option>
+                <option value="Les San'slips">Les San'slips</option>
+                <option value="La Pepouze team">La Pepouze team</option>
+            </select>
+
+            <button type="submit">Soumettre le pari</button>
+        </form>
+    </div>
+
+    <!-- Intégration de Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Ajoutez Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+
+    <script>
+        // Configuration Firebase (remplacez par vos propres informations)
         const firebaseConfig = {
             apiKey: "AIzaSyDIClGO9pdfLBDmNHtTFAxgrzx45d4H7rk",
             authDomain: "paris-du-t24.firebaseapp.com",
-            databaseURL: "https://paris-du-t24-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "paris-du-t24",
             storageBucket: "paris-du-t24.firebasestorage.app",
             messagingSenderId: "726232759474",
-            appId: "1:726232759474:web:b6c56cf19fedfe8e489dab",
-            measurementId: "G-3FVQ4L7M5W"
+            appId: "1:726232759474:web:b6c56cf19fedfe8e489dab"
         };
 
-        // Initialize Firebase
+        // Initialiser Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // Gestion du formulaire
+        // Temps maximum pour chaque discipline (en heures)
+        const tempsMax = {
+            natation: 4,
+            cyclisme: 12,
+            course: 8,
+        };
+
+        // Fonction pour calculer la vitesse ou l'allure nécessaire
+        function calculerVitesseOuAllure(distance, tempsMax) {
+            if (distance === 0 || tempsMax === 0) return 0;
+            return distance / tempsMax; // en km/h
+        }
+
+        // Fonction pour convertir une vitesse en allure (temps par 100 m ou 1000 m)
+        function convertirEnAllure(vitesse, distanceReference) {
+            if (vitesse === 0) return "0:00";
+            const tempsParKm = 60 / vitesse; // temps en minutes pour 1 km
+            const tempsParDistance = (tempsParKm * distanceReference) / 1000; // temps pour la distance de référence
+            const minutes = Math.floor(tempsParDistance);
+            const secondes = Math.round((tempsParDistance - minutes) * 60);
+            return `${minutes}:${secondes.toString().padStart(2, '0')}`;
+        }
+
+        // Fonction pour lancer le feu d'artifice
+        function lancerFeuArtifice() {
+            confetti({
+                particleCount: 100, // Nombre de particules
+                spread: 70, // Étendue du feu d'artifice
+                origin: { y: 0.6 }, // Position verticale du feu d'artifice
+            });
+        }
+
+        // Fonction pour calculer le score total
+        function calculerScore() {
+            // Récupérer les valeurs des sliders
+            const natationDistance = parseFloat(document.getElementById('natation-distance').value);
+            const cyclismeDistance = parseFloat(document.getElementById('cyclisme-distance').value);
+            const courseDistance = parseFloat(document.getElementById('course-distance').value);
+
+            // Calculer le score total
+            const scoreNatation = natationDistance * 15;
+            const scoreCyclisme = cyclismeDistance * 1;
+            const scoreCourse = courseDistance * 4;
+            const totalScore = scoreNatation + scoreCyclisme + scoreCourse;
+
+            // Afficher le score total
+            document.getElementById('total-score').textContent = totalScore.toFixed(1);
+
+            // Lancer le feu d'artifice si le score dépasse 1000
+            if (totalScore > 1000) {
+                lancerFeuArtifice();
+            }
+        }
+
+        // Fonction pour mettre à jour les valeurs affichées
+        function mettreAJourValeurs() {
+            // Natation
+            const natationDistance = parseFloat(document.getElementById('natation-distance').value);
+            document.getElementById('natation-distance-output').textContent = natationDistance.toFixed(1);
+            const vitesseNatation = calculerVitesseOuAllure(natationDistance, tempsMax.natation);
+            const allureNatation = convertirEnAllure(vitesseNatation, 100); // Allure pour 100 m
+            document.getElementById('natation-allure-output').textContent = allureNatation;
+
+            // Cyclisme
+            const cyclismeDistance = parseFloat(document.getElementById('cyclisme-distance').value);
+            document.getElementById('cyclisme-distance-output').textContent = cyclismeDistance.toFixed(1);
+            const vitesseCyclisme = calculerVitesseOuAllure(cyclismeDistance, tempsMax.cyclisme);
+            document.getElementById('cyclisme-vitesse-output').textContent = vitesseCyclisme.toFixed(1);
+
+            // Course à pied
+            const courseDistance = parseFloat(document.getElementById('course-distance').value);
+            document.getElementById('course-distance-output').textContent = courseDistance.toFixed(1);
+            const vitesseCourse = calculerVitesseOuAllure(courseDistance, tempsMax.course);
+            const allureCourse = convertirEnAllure(vitesseCourse, 1000); // Allure pour 1000 m
+            document.getElementById('course-allure-output').textContent = allureCourse;
+
+            // Recalculer le score
+            calculerScore();
+        }
+
+        // Fonction pour réinitialiser les sliders
+        function reinitialiserSliders() {
+            document.getElementById('natation-distance').value = 0;
+            document.getElementById('cyclisme-distance').value = 0;
+            document.getElementById('course-distance').value = 0;
+            mettreAJourValeurs(); // Mettre à jour les valeurs affichées
+        }
+
+        // Écouter les changements sur les sliders
+        const sliders = document.querySelectorAll('.slider');
+        sliders.forEach(slider => {
+            slider.addEventListener('input', mettreAJourValeurs);
+        });
+
+        // Initialiser les valeurs au chargement de la page
+        mettreAJourValeurs();
+
+        // Gestion du formulaire de paris
         document.getElementById('betForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
@@ -169,28 +379,14 @@
                 timestamp: new Date().toISOString()
             };
 
-            push(ref(database, 'bets/'), betData)
+            database.ref('bets/').push(betData)
                 .then(() => {
-                    alert(`Merci ${participant} pour votre pari !`);
+                    alert(`Merci ${participant} pour votre pari !\n\n1ère place : ${firstPlace}\n2ème place : ${secondPlace}\n3ème place : ${thirdPlace}`);
                 })
                 .catch((error) => {
                     console.error("Erreur lors de l'enregistrement du pari : ", error);
                     alert("Une erreur s'est produite. Veuillez réessayer.");
                 });
-        });
-
-        // Afficher les paris existants
-        const betsTableBody = document.getElementById('betsTable').getElementsByTagName('tbody')[0];
-
-        onChildAdded(ref(database, 'bets/'), (snapshot) => {
-            const bet = snapshot.val();
-            const row = betsTableBody.insertRow();
-
-            row.insertCell().textContent = bet.participant;
-            row.insertCell().textContent = bet.firstPlace;
-            row.insertCell().textContent = bet.secondPlace;
-            row.insertCell().textContent = bet.thirdPlace;
-            row.insertCell().textContent = new Date(bet.timestamp).toLocaleString();
         });
     </script>
 </body>
