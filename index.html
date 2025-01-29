@@ -132,10 +132,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Espace le contenu verticalement */
-    border: 1px solid #ccc; /* Optionnel : pour visualiser les conteneurs */
+    border: 0px solid #ccc; /* Optionnel : pour visualiser les conteneurs */
     border-radius: 8px;
     padding: 10px;
-    background-color: #f9f9f9; /* Optionnel : pour un fond légèrement différent */
+    /*background-color: #f9f9f9;  Optionnel : pour un fond légèrement différent */
 }
 
 .point-input label {
@@ -150,10 +150,11 @@
     border-radius: 4px;
     border: 1px solid #ccc;
     text-align: center;
+    margin-left: -5px;
 }
 	    .tours-container {
     display: flex;
-    gap: 20px; /* Espace entre les éléments */
+    gap: 5px; /* Espace entre les éléments */
     align-items: stretch; /* Force les éléments à avoir la même hauteur */
 }
 
@@ -162,10 +163,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Espace le contenu verticalement */
-    border: 1px solid #ccc; /* Optionnel : pour visualiser les conteneurs */
+    border: 0px solid #ccc; /* Optionnel : pour visualiser les conteneurs */
     border-radius: 8px;
-    padding: 10px;
-    background-color: #f9f9f9; /* Optionnel : pour un fond légèrement différent */
+    padding: 0px;
+    /*background-color: #f9f9f9;  Optionnel : pour un fond légèrement différent */
 }
 
 .tour-input label {
@@ -174,13 +175,22 @@
     text-align: center;
 }
 
-.tour-input select,
-.tour-input input {
-    width: 100%;
+.tour-input select{
+    width: 80%;
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
     text-align: center;
+    margin-left: 10px;
+    margin-top:20px;
+}
+.tour-input input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin-left: 10px;
 }
 </style>
 </head>
@@ -218,7 +228,7 @@
 			<label>Nombre de point par equipe : </label>
 			<div class="points-container">
         <div class="point-input">
-            <label for="points_quadri">Quadricolor... Les quatre couleurs primaires</label>
+            <label for="points_quadri">Quadricolor</label>
             <input type="number" id="points_quadri" name="points_quadri" min="0" required>
         </div>
         <div class="point-input">
@@ -252,33 +262,30 @@
                 <option value="Teddy">Teddy</option>
                 <option value="Encore un à définir">Encore un à définir</option>
             </select>
-<label>Qui fera le plus de tours de natation :</label>
-    <div class="tours-container">
-        <div class="tour-input">
-            <label for="meilleur-nageur-tours-nom">Participant</label>
-            <select id="meilleur-nageur-tours-nom" name="meilleur-nageur-tours-nom" required>
-                <option value="">Sélectionnez un participant</option>
-                <option value="Alexis">Alexis</option>
-                <option value="Baptiste">Baptiste</option>
-                <option value="Kevin">Kevin</option>
-                <option value="Maxime">Maxime</option>
-                <option value="Anthony">Anthony</option>
-                <option value="Antoine">Antoine</option>
-                <option value="François">François</option>
-                <option value="Tristan">Tristan</option>
-                <option value="Julien">Julien</option>
-                <option value="Pierre-Jean">Pierre-Jean</option>
-                <option value="Teddy">Teddy</option>
-                <option value="Encore un à définir">Encore un à définir</option>
-            </select>
-        </div>
-        <div class="tour-input">
-            <label for="meilleur-nageur-tours-nombre">Nombre de tours</label>
-            <input type="number" id="meilleur-nageur-tours-nombre" name="meilleur-nageur-tours-nombre" min="0" required>
-        </div>
+<div class="tours-container">
+        <label for="meilleur-nageur-tours-nom">Qui fera le plus de tours :</label>
+        <select id="meilleur-nageur-tours-nom" name="meilleur-nageur-tours-nom" required>
+            <option value="">Sélectionnez un participant</option>
+            <option value="Alexis">Alexis</option>
+            <option value="Baptiste">Baptiste</option>
+            <option value="Kevin">Kevin</option>
+            <option value="Maxime">Maxime</option>
+            <option value="Anthony">Anthony</option>
+            <option value="Antoine">Antoine</option>
+            <option value="François">François</option>
+            <option value="Tristan">Tristan</option>
+            <option value="Julien">Julien</option>
+            <option value="Pierre-Jean">Pierre-Jean</option>
+            <option value="Teddy">Teddy</option>
+            <option value="Encore un à définir">Encore un à définir</option>
+        </select>
+        <input type="number" id="meilleur-nageur-tours-nombre" name="meilleur-nageur-tours-nombre" min="0" required placeholder="Nombre de tours">
     </div></div>
-            <label for="meilleur-rouleur-vitesse">Meilleur rouleur (vitesse) :</label>
-            <select id="meilleur-rouleur-vitesse" name="meilleur-rouleur-vitesse" required>
+    <!--  paris  velo -->
+            <div class="cadre-section">
+    <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/VELO.jpg" alt="Image velo" style="width: 100%; border-radius : 15px; display: block; margin: 0 auto 20px;">
+   <label for="meilleur-nageur-vitesse">Qui roulera le plus vite :</label>
+            <select id="meilleur-nageur-vitesse" name="meilleur-nageur-vitesse" required>
                 <option value="">Sélectionnez un participant</option>
                 <option value="Alexis">Alexis</option>
                 <option value="Baptiste">Baptiste</option>
@@ -293,8 +300,29 @@
                 <option value="Teddy">Teddy</option>
                 <option value="Encore un à définir">Encore un à définir</option>
             </select>
-
-            <label for="meilleur-coureur-vitesse">Meilleur coureur (vitesse) :</label>
+<div class="tours-container">
+        <label for="meilleur-rouleur-tours-nom">Qui fera le plus de tours :</label>
+        <select id="meilleur-rouleur-tours-nom" name="meilleur-rouleur-tours-nom" required>
+            <option value="">Sélectionnez un participant</option>
+            <option value="Alexis">Alexis</option>
+            <option value="Baptiste">Baptiste</option>
+            <option value="Kevin">Kevin</option>
+            <option value="Maxime">Maxime</option>
+            <option value="Anthony">Anthony</option>
+            <option value="Antoine">Antoine</option>
+            <option value="François">François</option>
+            <option value="Tristan">Tristan</option>
+            <option value="Julien">Julien</option>
+            <option value="Pierre-Jean">Pierre-Jean</option>
+            <option value="Teddy">Teddy</option>
+            <option value="Encore un à définir">Encore un à définir</option>
+        </select>
+        <input type="number" id="meilleur-rouleur-tours-nombre" name="meilleur-rouleur-tours-nombre" min="0" required placeholder="Nombre de tours">
+    </div></div>
+            <!--  paris  cap -->
+            <div class="cadre-section">
+    <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CAP.jpg" alt="Image cap" style="width: 100%; border-radius : 15px; display: block; margin: 0 auto 20px;">
+   <label for="meilleur-coureur-vitesse">Qui courra le plus vite :</label>
             <select id="meilleur-coureur-vitesse" name="meilleur-coureur-vitesse" required>
                 <option value="">Sélectionnez un participant</option>
                 <option value="Alexis">Alexis</option>
@@ -310,126 +338,28 @@
                 <option value="Teddy">Teddy</option>
                 <option value="Encore un à définir">Encore un à définir</option>
             </select>
+<div class="tours-container">
+        <label for="meilleur-coureur-tours-nom">Qui fera le plus de tours :</label>
+        <select id="meilleur-coureur-tours-nom" name="meilleur-coureur-tours-nom" required>
+            <option value="">Sélectionnez un participant</option>
+            <option value="Alexis">Alexis</option>
+            <option value="Baptiste">Baptiste</option>
+            <option value="Kevin">Kevin</option>
+            <option value="Maxime">Maxime</option>
+            <option value="Anthony">Anthony</option>
+            <option value="Antoine">Antoine</option>
+            <option value="François">François</option>
+            <option value="Tristan">Tristan</option>
+            <option value="Julien">Julien</option>
+            <option value="Pierre-Jean">Pierre-Jean</option>
+            <option value="Teddy">Teddy</option>
+            <option value="Encore un à définir">Encore un à définir</option>
+        </select>
+        <input type="number" id="meilleur-coureur-tours-nombre" name="meilleur-coureur-tours-nombre" min="0" required placeholder="Nombre de tours">
+    </div></div>
 
-            <!-- Meilleur nageur (nombre de tours) -->
 
-
-<table border="0" style="border-collapse: collapse; width: 100%; text-align: center; padding:5;">
-					<tr>
-							<!-- Ligne 2 : Inputs -->
-							<td><label for="meilleur-nageur-tours-nom">Meilleur nageur (nombre de tours) :</label></td>
-							<td>
-								<select id="meilleur-nageur-tours-nom" name="meilleur-nageur-tours-nom" required>
-						<option value="">Sélectionnez un participant</option>
-						<option value="Alexis">Alexis</option>
-						<option value="Baptiste">Baptiste</option>
-						<option value="Kevin">Kevin</option>
-						<option value="Maxime">Maxime</option>
-						<option value="Anthony">Anthony</option>
-						<option value="Antoine">Antoine</option>
-						<option value="François">François</option>
-						<option value="Tristan">Tristan</option>
-						<option value="Julien">Julien</option>
-						<option value="Pierre-Jean">Pierre-Jean</option>
-						<option value="Teddy">Teddy</option>
-						<option value="Encore un à définir">Encore un à définir</option>
-					</select>
-							</td>
-        <td>
-            <input type="number" id="meilleur-nageur-tours-nombre" name="meilleur-nageur-tours-nombre" min="0" required>
-        </td>
-		</tr>
-					<tr>
-							<!-- Ligne 2 : Inputs -->
-							<td><label for="meilleur-rouleur-tours-nom">Meilleur rouleur (nombre de tours) :</label></td>
-							<td>
-								<select id="meilleur-rouleur-tours-nom" name="meilleur-rouleur-tours-nom" required>
-						<option value="">Sélectionnez un participant</option>
-						<option value="Alexis">Alexis</option>
-						<option value="Baptiste">Baptiste</option>
-						<option value="Kevin">Kevin</option>
-						<option value="Maxime">Maxime</option>
-						<option value="Anthony">Anthony</option>
-						<option value="Antoine">Antoine</option>
-						<option value="François">François</option>
-						<option value="Tristan">Tristan</option>
-						<option value="Julien">Julien</option>
-						<option value="Pierre-Jean">Pierre-Jean</option>
-						<option value="Teddy">Teddy</option>
-						<option value="Encore un à définir">Encore un à définir</option>
-					</select>
-							</td>
-        <td>
-            <input type="number" id="meilleur-rouleur-tours-nombre" name="meilleur-rouleur-tours-nombre" min="0" required>
-        </td>
-		</tr>
-		
-		
-					<tr>
-							<!-- Ligne 2 : Inputs -->
-							<td><label for="meilleur-coureur-tours-nom">Meilleur coureur (nombre de tours) :</label></td>
-							<td>
-								<select id="meilleur-coureur-tours-nom" name="meilleur-coureur-tours-nom" required>
-						<option value="">Sélectionnez un participant</option>
-						<option value="Alexis">Alexis</option>
-						<option value="Baptiste">Baptiste</option>
-						<option value="Kevin">Kevin</option>
-						<option value="Maxime">Maxime</option>
-						<option value="Anthony">Anthony</option>
-						<option value="Antoine">Antoine</option>
-						<option value="François">François</option>
-						<option value="Tristan">Tristan</option>
-						<option value="Julien">Julien</option>
-						<option value="Pierre-Jean">Pierre-Jean</option>
-						<option value="Teddy">Teddy</option>
-						<option value="Encore un à définir">Encore un à définir</option>
-					</select>
-							</td>
-        <td>
-            <input type="number" id="meilleur-coureur-tours-nombre" name="meilleur-coureur-tours-nombre" min="0" required>
-        </td>
-		</tr>
-</table>
-
-<!-- Meilleur rouleur (nombre de tours) 
-<label for="meilleur-rouleur-tours-nom">Meilleur rouleur (nombre de tours) :</label>
-<select id="meilleur-rouleur-tours-nom" name="meilleur-rouleur-tours-nom" required>
-    <option value="">Sélectionnez un participant</option>
-    <option value="Alexis">Alexis</option>
-    <option value="Baptiste">Baptiste</option>
-    <option value="Kevin">Kevin</option>
-    <option value="Maxime">Maxime</option>
-    <option value="Anthony">Anthony</option>
-    <option value="Antoine">Antoine</option>
-    <option value="François">François</option>
-    <option value="Tristan">Tristan</option>
-    <option value="Julien">Julien</option>
-    <option value="Pierre-Jean">Pierre-Jean</option>
-    <option value="Teddy">Teddy</option>
-    <option value="Encore un à définir">Encore un à définir</option>
-</select>
-<input type="number" id="meilleur-rouleur-tours-nombre" name="meilleur-rouleur-tours-nombre" min="0" required>
-
-<!-- Meilleur coureur (nombre de tours) 
-<label for="meilleur-coureur-tours-nom">Meilleur coureur (nombre de tours) :</label>
-<select id="meilleur-coureur-tours-nom" name="meilleur-coureur-tours-nom" required>
-    <option value="">Sélectionnez un participant</option>
-    <option value="Alexis">Alexis</option>
-    <option value="Baptiste">Baptiste</option>
-    <option value="Kevin">Kevin</option>
-    <option value="Maxime">Maxime</option>
-    <option value="Anthony">Anthony</option>
-    <option value="Antoine">Antoine</option>
-    <option value="François">François</option>
-    <option value="Tristan">Tristan</option>
-    <option value="Julien">Julien</option>
-    <option value="Pierre-Jean">Pierre-Jean</option>
-    <option value="Teddy">Teddy</option>
-    <option value="Encore un à définir">Encore un à définir</option>
-</select>
-<input type="number" id="meilleur-coureur-tours-nombre" name="meilleur-coureur-tours-nombre" min="0" required>-->
-
-            <label for="meilleur-fumeur">Meilleur fumeur :</label>
+            <label for="meilleur-fumeur">Plus de clopes fumées:</label>
             <select id="meilleur-fumeur" name="meilleur-fumeur" required>
                 <option value="">Sélectionnez un participant</option>
                 <option value="Alexis">Alexis</option>
@@ -446,7 +376,7 @@
                 <option value="Encore un à définir">Encore un à définir</option>
             </select>
 
-            <label for="meilleur-buveur">Meilleur buveur :</label>
+            <label for="meilleur-buveur">Plus de bieres descendues :</label>
             <select id="meilleur-buveur" name="meilleur-buveur" required>
                 <option value="">Sélectionnez un participant</option>
                 <option value="Alexis">Alexis</option>
