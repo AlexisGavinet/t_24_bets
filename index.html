@@ -164,16 +164,11 @@
 </table>
 </div>
             <!-- Nouveaux paris -->
-            <label for="points-equipe">Nombre de points par équipe :</label>
-            <select id="points-equipe" name="points-equipe" required>
-                <option value="">Sélectionnez l'equipe</option>
-                <option value="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</option>
-                <option value="Les San'slips">Les San'slips</option>
-                <option value="La Pepouze team">La Pepouze team</option>
-                
-            </select>
-
-            <label for="meilleur-nageur-vitesse">Meilleur nageur (vitesse) :</label>
+            
+<!--  paris  natation -->
+            <div class="cadre-section">
+    <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PODIUM.png" alt="Image Podium" style="width: 100%; border-radius : 15px; display: block; margin: 0 auto 20px;">
+   <label for="meilleur-nageur-vitesse">Qui nagera le plus vite :</label>
             <select id="meilleur-nageur-vitesse" name="meilleur-nageur-vitesse" required>
                 <option value="">Sélectionnez un participant</option>
                 <option value="Alexis">Alexis</option>
@@ -189,7 +184,31 @@
                 <option value="Teddy">Teddy</option>
                 <option value="Encore un à définir">Encore un à définir</option>
             </select>
-
+<table border="0" style="border-collapse: collapse; width: 100%; text-align: center; padding:5;">
+					<tr>
+							<!-- Ligne 2 : Inputs -->
+							<td><label for="meilleur-nageur-tours-nom">Qui fera le plus de tour de natation</label></td>
+							<td>
+								<select id="meilleur-nageur-tours-nom" name="meilleur-nageur-tours-nom" required>
+						<option value="">Sélectionnez un participant</option>
+						<option value="Alexis">Alexis</option>
+						<option value="Baptiste">Baptiste</option>
+						<option value="Kevin">Kevin</option>
+						<option value="Maxime">Maxime</option>
+						<option value="Anthony">Anthony</option>
+						<option value="Antoine">Antoine</option>
+						<option value="François">François</option>
+						<option value="Tristan">Tristan</option>
+						<option value="Julien">Julien</option>
+						<option value="Pierre-Jean">Pierre-Jean</option>
+						<option value="Teddy">Teddy</option>
+						<option value="Encore un à définir">Encore un à définir</option>
+					</select>
+							</td>
+        <td>
+            <input type="number" id="meilleur-nageur-tours-nombre" name="meilleur-nageur-tours-nombre" min="0" required>
+        </td>
+		</tr> </table></div>
             <label for="meilleur-rouleur-vitesse">Meilleur rouleur (vitesse) :</label>
             <select id="meilleur-rouleur-vitesse" name="meilleur-rouleur-vitesse" required>
                 <option value="">Sélectionnez un participant</option>
