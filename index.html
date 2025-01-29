@@ -121,6 +121,30 @@
             font-size: 0.9em;
         }
     }
+	    .points-container {
+    display: flex;
+    gap: 20px; /* Espace entre les éléments */
+    justify-content: space-between; /* Répartit l'espace entre les éléments */
+    margin-bottom: 20px;
+}
+
+.point-input {
+    flex: 1; /* Chaque élément prend une part égale de l'espace */
+    text-align: center;
+}
+
+.point-input label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.point-input input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
 </style>
 </head>
 <body>
@@ -155,26 +179,20 @@
     </div>
 
 			<label>Nombre de point par equipe : </label>
-			<table border="0" style="border-collapse: collapse; width: 100%; text-align: center;">
-    <tr>
-        <!-- Ligne 1 : Noms des équipes -->
-        <th>Quadricolor</th>
-        <th>Les San'slips</th>
-        <th>La Pepouze team</th>
-    </tr>
-    <tr>
-        <!-- Ligne 2 : Inputs -->
-        <td>
+			<div class="points-container">
+        <div class="point-input">
+            <label for="points_quadri">Quadricolor</label>
             <input type="number" id="points_quadri" name="points_quadri" min="0" required>
-        </td>
-        <td>
+        </div>
+        <div class="point-input">
+            <label for="points_san">Les San'slips</label>
             <input type="number" id="points_san" name="points_san" min="0" required>
-        </td>
-        <td>
+        </div>
+        <div class="point-input">
+            <label for="points_pep">La Pepouze team</label>
             <input type="number" id="points_pep" name="points_pep" min="0" required>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
 </div>
             <!-- Nouveaux paris -->
             
