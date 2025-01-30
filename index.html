@@ -346,6 +346,8 @@
                 </div>
             </div>
             <!-- Autres paris -->
+            <div class="cadre-section">
+                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CIG.jpg" alt="Image cig" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
             <label for="meilleur-fumeur">Plus de clopes fumées :</label>
             <select id="meilleur-fumeur" name="meilleur-fumeur" required>
                 <option value="">Sélectionnez un participant</option>
@@ -377,7 +379,9 @@
                 <option value="Pierre-Jean">Pierre-Jean</option>
                 <option value="Teddy">Teddy</option>
                 <option value="Encore un à définir">Encore un à définir</option>
-            </select>
+            </select></div>
+            <div class="cadre-section">
+                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/SLEEP.jpg" alt="Image sleep" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
             <label for="plus-gros-dormeur">Plus gros dormeur :</label>
             <select id="plus-gros-dormeur" name="plus-gros-dormeur" required>
                 <option value="">Sélectionnez un participant</option>
@@ -393,8 +397,11 @@
                 <option value="Pierre-Jean">Pierre-Jean</option>
                 <option value="Teddy">Teddy</option>
                 <option value="Encore un à définir">Encore un à définir</option>
-            </select>
-            <label for="abandon-blessure">Abandon (blessure) :</label>
+            </select></div>
+            <div class="cadre-section">
+                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/DNF.jpg" alt="Image dnf" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
+                <label>Qui abandonnera ?</label>
+            <label for="abandon-blessure">Blessure :</label>
             <select id="abandon-blessure" name="abandon-blessure" required>
                 <option value="">Sélectionnez un participant</option>
                 <option value="Alexis">Alexis</option>
@@ -410,7 +417,7 @@
                 <option value="Teddy">Teddy</option>
                 <option value="Encore un à définir">Encore un à définir</option>
             </select>
-            <label for="abandon-meteo">Abandon (météo) :</label>
+            <label for="abandon-meteo">Méteo :</label>
             <select id="abandon-meteo" name="abandon-meteo" required>
                 <option value="">Sélectionnez un participant</option>
                 <option value="Alexis">Alexis</option>
@@ -425,13 +432,46 @@
                 <option value="Pierre-Jean">Pierre-Jean</option>
                 <option value="Teddy">Teddy</option>
                 <option value="Encore un à définir">Encore un à définir</option>
-            </select>
+            </select></div>
+            <div class="cadre-section">
+                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PERSO.jpg" alt="Image Perso" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
+                <label>Meilleur temps : </label>
+                <div class="points-container">
+                    <div class="point-input">
+                        <label for="points_perso_nat">Natation</label>
+                        <input type="number" id="points_perso_nat" name="points_perso_nat" min="0" required>
+                    </div>
+                    <div class="point-input">
+                        <label for="points_perso_velo">Vélo</label>
+                        <input type="number" id="points_perso_velo" name="points_perso_velo" min="0" required>
+                    </div>
+                    <div class ="point-input">
+                    <label for ="points_perso_cap">Course a pieds</label>
+                    <input type="number" id="points_perso_cap" name="points_perso_cap" min="0" required>
+                    </div>
+                </div>
+                <label>Nombre de tours : </label>
+                <div class="points-container">
+                    <div class="point-input">
+                        <label for="tour_perso_nat">Natation</label>
+                        <input type="number" id="tour_perso_nat" name="tour_perso_nat" min="0" required>
+                    </div>
+                    <div class="point-input">
+                        <label for="tour_perso_velo">Vélo</label>
+                        <input type="number" id="tour_perso_velo" name="tour_perso_velo" min="0" required>
+                    </div>
+                    <div class="point-input">
+                        <label for="tour_perso_cap">Course a pieds</label>
+                        <input type="number" id="tour_perso_cap" name="tour_perso_cap" min="0" required>
+                    </div>
+                </div>
+            </div>
             <button type="submit">Soumettre le pari</button>
         </form>
     </div>
 
-    <!-- Intégration de Canvas Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Intégration de Canvas Confetti 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>-->
     <!-- Intégration de SortableJS -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <!-- Intégration de Firebase -->
@@ -506,6 +546,13 @@
             const pointquadri = document.getElementById('points_quadri').value;
             const pointsan = document.getElementById('points_san').value;
             const pointpep = document.getElementById('points_pep').value;
+            
+            const points_perso_nat = document.getElementById('points_perso_nat').value;
+            const points_perso_velo = document.getElementById('points_perso_velo').value;
+            const points_perso_cap = document.getElementById('points_perso_cap').value;
+            const tour_perso_nat = document.getElementById('tour_perso_nat').value;
+            const tour_perso_velo = document.getElementById('tour_perso_velo').value;
+            const tour_perso_cap = document.getElementById('tour_perso_cap').value;
 
             // Enregistrer le pari dans Firebase
             const betData = {
@@ -536,6 +583,12 @@
                 plusGrosDormeur: plusGrosDormeur,
                 abandonBlessure: abandonBlessure,
                 abandonMeteo: abandonMeteo,
+                MDP_nat: points_perso_nat,
+                MDP_velo: points_perso_velo,
+                MDP_cap: points_perso_cap, 
+                MTP_nat: tour_perso_nat,
+                MTP_velo: tour_perso_velo,
+                MTP_cap: tour_perso_cap,
                 timestamp: new Date().toISOString()
             };
 
