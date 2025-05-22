@@ -1,13 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronostics T24 BORMES 2025</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pronostics T24 BORMES 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<style>
         /* Styles de base */
         body {
             font-family: 'Roboto', sans-serif;
@@ -189,299 +189,171 @@
     </style>
 </head>
 <body>
-    <!--<h1>Pronostics T24 BORMES 2025</h1>-->
-    <div class="container">
-        <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PARIS.jpg" alt="Image paris" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
-        <!-- Formulaire de paris -->
-        <form id="betForm">
-            
-            <label for="participant">Votre nom :</label>
-            <select id="participant" name="participant" required>
-                <option value="">Sélectionnez votre nom</option>
-                <option value="Alexis">Alexis</option>
-                <option value="Baptiste">Baptiste</option>
-                <option value="Kevin">Kevin</option>
-                <option value="Maxime">Maxime</option>
-                <option value="Anthony">Anthony</option>
-                <option value="Antoine">Antoine</option>
-                <option value="François">François</option>
-                <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                <option value="Pierre-Jean">Pierre-Jean</option>
-                <option value="Teddy">Teddy</option>
-                <option value="Encore un à définir">Encore un à définir</option>
-            </select>
-            <div class="cadre-section">
-                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PODIUM.png" alt="Image Podium" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
-                <div id="podium">
-                    <div class="pillule" data-team="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</div>
-                    <div class="pillule" data-team="Les San'slips">Les San'slips</div>
-                    <div class="pillule" data-team="La Pepouze team">La Pepouze team</div>
-                </div>
-                <label>Nombre de points par équipe : </label>
-                <div class="points-container">
-                    <div class="point-input">
-                        <label for="points_quadri">Quadricolor</label>
-                        <input type="number" id="points_quadri" name="points_quadri" min="0" required>
-                    </div>
-                    <div class="point-input">
-                        <label for="points_san">Les San'slips</label>
-                        <input type="number" id="points_san" name="points_san" min="0" required>
-                    </div>
-                    <div class="point-input">
-                        <label for="points_pep">La Pepouze team</label>
-                        <input type="number" id="points_pep" name="points_pep" min="0" required>
-                    </div>
-                </div>
-            </div>
-            <!-- Paris natation -->
-            <div class="cadre-section">
-                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/NATATION.jpg" alt="Image Natation" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
-                <label for="meilleur-nageur-vitesse">Qui nagera le plus vite :</label>
-                <select id="meilleur-nageur-vitesse" name="meilleur-nageur-vitesse" required>
-                    <option value="">Sélectionnez un participant</option>
-                    <option value="Alexis">Alexis</option>
-                    <option value="Baptiste">Baptiste</option>
-                    <option value="Kevin">Kevin</option>
-                    <option value="Maxime">Maxime</option>
-                    <option value="Anthony">Anthony</option>
-                    <option value="Antoine">Antoine</option>
-                    <option value="François">François</option>
-                    <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                    <option value="Pierre-Jean">Pierre-Jean</option>
-                    <option value="Teddy">Teddy</option>
-                    <option value="Encore un à définir">Encore un à définir</option>
-                </select>
-                <div class="tours-container">
-                    <label for="meilleur-nageur-tours-nom">Qui fera le plus de tours :</label>
-                    <select id="meilleur-nageur-tours-nom" name="meilleur-nageur-tours-nom" required>
-                        <option value="">Sélectionnez un participant</option>
-                        <option value="Alexis">Alexis</option>
-                        <option value="Baptiste">Baptiste</option>
-                        <option value="Kevin">Kevin</option>
-                        <option value="Maxime">Maxime</option>
-                        <option value="Anthony">Anthony</option>
-                        <option value="Antoine">Antoine</option>
-                        <option value="François">François</option>
-                        <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                        <option value="Pierre-Jean">Pierre-Jean</option>
-                        <option value="Teddy">Teddy</option>
-                        <option value="Encore un à définir">Encore un à définir</option>
-                    </select>
-                    <input type="number" id="meilleur-nageur-tours-nombre" name="meilleur-nageur-tours-nombre" min="0" required placeholder="Nombre de tours">
-                </div>
-            </div>
-            <!-- Paris vélo -->
-            <div class="cadre-section">
-                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/VELO.jpg" alt="Image Vélo" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
-                <label for="meilleur-rouleur-vitesse">Qui roulera le plus vite :</label>
-                <select id="meilleur-rouleur-vitesse" name="meilleur-rouleur-vitesse" required>
-                    <option value="">Sélectionnez un participant</option>
-                    <option value="Alexis">Alexis</option>
-                    <option value="Baptiste">Baptiste</option>
-                    <option value="Kevin">Kevin</option>
-                    <option value="Maxime">Maxime</option>
-                    <option value="Anthony">Anthony</option>
-                    <option value="Antoine">Antoine</option>
-                    <option value="François">François</option>
-                    <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                    <option value="Pierre-Jean">Pierre-Jean</option>
-                    <option value="Teddy">Teddy</option>
-                    <option value="Encore un à définir">Encore un à définir</option>
-                </select>
-                <div class="tours-container">
-                    <label for="meilleur-rouleur-tours-nom">Qui fera le plus de tours :</label>
-                    <select id="meilleur-rouleur-tours-nom" name="meilleur-rouleur-tours-nom" required>
-                        <option value="">Sélectionnez un participant</option>
-                        <option value="Alexis">Alexis</option>
-                        <option value="Baptiste">Baptiste</option>
-                        <option value="Kevin">Kevin</option>
-                        <option value="Maxime">Maxime</option>
-                        <option value="Anthony">Anthony</option>
-                        <option value="Antoine">Antoine</option>
-                        <option value="François">François</option>
-                        <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                        <option value="Pierre-Jean">Pierre-Jean</option>
-                        <option value="Teddy">Teddy</option>
-                        <option value="Encore un à définir">Encore un à définir</option>
-                    </select>
-                    <input type="number" id="meilleur-rouleur-tours-nombre" name="meilleur-rouleur-tours-nombre" min="0" required placeholder="Nombre de tours">
-                </div>
-            </div>
-            <!-- Paris course à pied -->
-            <div class="cadre-section">
-                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CAP.jpg" alt="Image CAP" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
-                <label for="meilleur-coureur-vitesse">Qui courra le plus vite :</label>
-                <select id="meilleur-coureur-vitesse" name="meilleur-coureur-vitesse" required>
-                    <option value="">Sélectionnez un participant</option>
-                    <option value="Alexis">Alexis</option>
-                    <option value="Baptiste">Baptiste</option>
-                    <option value="Kevin">Kevin</option>
-                    <option value="Maxime">Maxime</option>
-                    <option value="Anthony">Anthony</option>
-                    <option value="Antoine">Antoine</option>
-                    <option value="François">François</option>
-                    <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                    <option value="Pierre-Jean">Pierre-Jean</option>
-                    <option value="Teddy">Teddy</option>
-                    <option value="Encore un à définir">Encore un à définir</option>
-                </select>
-                <div class="tours-container">
-                    <label for="meilleur-coureur-tours-nom">Qui fera le plus de tours :</label>
-                    <select id="meilleur-coureur-tours-nom" name="meilleur-coureur-tours-nom" required>
-                        <option value="">Sélectionnez un participant</option>
-                        <option value="Alexis">Alexis</option>
-                        <option value="Baptiste">Baptiste</option>
-                        <option value="Kevin">Kevin</option>
-                        <option value="Maxime">Maxime</option>
-                        <option value="Anthony">Anthony</option>
-                        <option value="Antoine">Antoine</option>
-                        <option value="François">François</option>
-                        <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                        <option value="Pierre-Jean">Pierre-Jean</option>
-                        <option value="Teddy">Teddy</option>
-                        <option value="Encore un à définir">Encore un à définir</option>
-                    </select>
-                    <input type="number" id="meilleur-coureur-tours-nombre" name="meilleur-coureur-tours-nombre" min="0" required placeholder="Nombre de tours">
-                </div>
-            </div>
-            <!-- Autres paris -->
-            <div class="cadre-section">
-                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CIG.jpg" alt="Image cig" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
-            <label for="meilleur-fumeur">Plus de clopes fumées :</label>
-            <select id="meilleur-fumeur" name="meilleur-fumeur" required>
-                <option value="">Sélectionnez un participant</option>
-                <option value="Alexis">Alexis</option>
-                <option value="Baptiste">Baptiste</option>
-                <option value="Kevin">Kevin</option>
-                <option value="Maxime">Maxime</option>
-                <option value="Anthony">Anthony</option>
-                <option value="Antoine">Antoine</option>
-                <option value="François">François</option>
-               <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                <option value="Pierre-Jean">Pierre-Jean</option>
-                <option value="Teddy">Teddy</option>
-                <option value="Encore un à définir">Encore un à définir</option>
-            </select>
-            <label for="meilleur-buveur">Plus de bières descendues :</label>
-            <select id="meilleur-buveur" name="meilleur-buveur" required>
-                <option value="">Sélectionnez un participant</option>
-                <option value="Alexis">Alexis</option>
-                <option value="Baptiste">Baptiste</option>
-                <option value="Kevin">Kevin</option>
-                <option value="Maxime">Maxime</option>
-                <option value="Anthony">Anthony</option>
-                <option value="Antoine">Antoine</option>
-                <option value="François">François</option>
-                <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                <option value="Pierre-Jean">Pierre-Jean</option>
-                <option value="Teddy">Teddy</option>
-                <option value="Encore un à définir">Encore un à définir</option>
-            </select></div>
-            <div class="cadre-section">
-                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/SLEEP.jpg" alt="Image sleep" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
-            <label for="plus-gros-dormeur">Plus gros dormeur :</label>
-            <select id="plus-gros-dormeur" name="plus-gros-dormeur" required>
-                <option value="">Sélectionnez un participant</option>
-                <option value="Alexis">Alexis</option>
-                <option value="Baptiste">Baptiste</option>
-                <option value="Kevin">Kevin</option>
-                <option value="Maxime">Maxime</option>
-                <option value="Anthony">Anthony</option>
-                <option value="Antoine">Antoine</option>
-                <option value="François">François</option>
-                <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                <option value="Pierre-Jean">Pierre-Jean</option>
-                <option value="Teddy">Teddy</option>
-                <option value="Encore un à définir">Encore un à définir</option>
-            </select></div>
-            <div class="cadre-section">
-                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/DNF.jpg" alt="Image dnf" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
-                <label>Qui abandonnera ?</label>
-            <label for="abandon-blessure">Blessure :</label>
-            <select id="abandon-blessure" name="abandon-blessure" required>
-                <option value="">Sélectionnez un participant</option>
-                <option value="Alexis">Alexis</option>
-                <option value="Baptiste">Baptiste</option>
-                <option value="Kevin">Kevin</option>
-                <option value="Maxime">Maxime</option>
-                <option value="Anthony">Anthony</option>
-                <option value="Antoine">Antoine</option>
-                <option value="François">François</option>
-                <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                <option value="Pierre-Jean">Pierre-Jean</option>
-                <option value="Teddy">Teddy</option>
-                <option value="Encore un à définir">Encore un à définir</option>
-            </select>
-            <label for="abandon-meteo">Méteo :</label>
-            <select id="abandon-meteo" name="abandon-meteo" required>
-                <option value="">Sélectionnez un participant</option>
-                <option value="Alexis">Alexis</option>
-                <option value="Baptiste">Baptiste</option>
-                <option value="Kevin">Kevin</option>
-                <option value="Maxime">Maxime</option>
-                <option value="Anthony">Anthony</option>
-                <option value="Antoine">Antoine</option>
-                <option value="François">François</option>
-                <option value="Julien G">Julien G</option>
-                <option value="Julien R">Julien R</option>
-                <option value="Pierre-Jean">Pierre-Jean</option>
-                <option value="Teddy">Teddy</option>
-                <option value="Encore un à définir">Encore un à définir</option>
-            </select></div>
-            <div class="cadre-section">
-                <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PERSO.jpg" alt="Image Perso" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;">
-                <label>Ton meilleur temps : </label>
-                <div class="points-container">
-                    <div class="point-input">
-                        <label for="points_perso_nat">Natation</label>
-                        <input type="number" id="points_perso_nat" name="points_perso_nat" min="0" required>
-                    </div>
-                    <div class="point-input">
-                        <label for="points_perso_velo">Vélo</label>
-                        <input type="number" id="points_perso_velo" name="points_perso_velo" min="0" required>
-                    </div>
-                    <div class ="point-input">
-                    <label for ="points_perso_cap">Course a pieds</label>
-                    <input type="number" id="points_perso_cap" name="points_perso_cap" min="0" required>
-                    </div>
-                </div>
-                <label>Ton nombre de tours : </label>
-                <div class="points-container">
-                    <div class="point-input">
-                        <label for="tour_perso_nat">Natation</label>
-                        <input type="number" id="tour_perso_nat" name="tour_perso_nat" min="0" required>
-                    </div>
-                    <div class="point-input">
-                        <label for="tour_perso_velo">Vélo</label>
-                        <input type="number" id="tour_perso_velo" name="tour_perso_velo" min="0" required>
-                    </div>
-                    <div class="point-input">
-                        <label for="tour_perso_cap">Course a pieds</label>
-                        <input type="number" id="tour_perso_cap" name="tour_perso_cap" min="0" required>
-                    </div>
-                </div>
-            </div>
-            <button type="submit">Soumettre le pari</button>
-        </form>
-    </div>
-
-    <!-- Intégration de Canvas Confetti 
+<!--<h1>Pronostics T24 BORMES 2025</h1>-->
+<div class="container">
+<img alt="Image paris" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PARIS.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<!-- Formulaire de paris -->
+<form id="betForm">
+<label for="participant">Votre nom :</label>
+<select id="participant" name="participant" required=""><option value="">Sélectionnez un participant</option></select>
+<div class="cadre-section">
+<img alt="Image Podium" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PODIUM.png" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<div id="podium">
+<div class="pillule" data-team="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</div>
+<div class="pillule" data-team="Les San'slips">Les San'slips</div>
+<div class="pillule" data-team="La Pepouze team">La Pepouze team</div>
+</div>
+<label>Nombre de points par équipe : </label>
+<div class="points-container">
+<div class="point-input">
+<label for="points_quadri">Quadricolor</label>
+<input id="points_quadri" min="0" name="points_quadri" required="" type="number"/>
+</div>
+<div class="point-input">
+<label for="points_san">Les San'slips</label>
+<input id="points_san" min="0" name="points_san" required="" type="number"/>
+</div>
+<div class="point-input">
+<label for="points_pep">La Pepouze team</label>
+<input id="points_pep" min="0" name="points_pep" required="" type="number"/>
+</div>
+</div>
+</div>
+<!-- Paris natation -->
+<div class="cadre-section">
+<img alt="Image Natation" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/NATATION.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<label for="meilleur-nageur-vitesse">Qui nagera le plus vite :</label>
+<select id="meilleur-nageur-vitesse" name="meilleur-nageur-vitesse" required=""><option value="">Sélectionnez un participant</option></select>
+<div class="tours-container">
+<label for="meilleur-nageur-tours-nom">Qui fera le plus de tours :</label>
+<select id="meilleur-nageur-tours-nom" name="meilleur-nageur-tours-nom" required=""><option value="">Sélectionnez un participant</option></select>
+<input id="meilleur-nageur-tours-nombre" min="0" name="meilleur-nageur-tours-nombre" placeholder="Nombre de tours" required="" type="number"/>
+</div>
+</div>
+<!-- Paris vélo -->
+<div class="cadre-section">
+<img alt="Image Vélo" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/VELO.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<label for="meilleur-rouleur-vitesse">Qui roulera le plus vite :</label>
+<select id="meilleur-rouleur-vitesse" name="meilleur-rouleur-vitesse" required=""><option value="">Sélectionnez un participant</option></select>
+<div class="tours-container">
+<label for="meilleur-rouleur-tours-nom">Qui fera le plus de tours :</label>
+<select id="meilleur-rouleur-tours-nom" name="meilleur-rouleur-tours-nom" required=""><option value="">Sélectionnez un participant</option></select>
+<input id="meilleur-rouleur-tours-nombre" min="0" name="meilleur-rouleur-tours-nombre" placeholder="Nombre de tours" required="" type="number"/>
+</div>
+</div>
+<!-- Paris course à pied -->
+<div class="cadre-section">
+<img alt="Image CAP" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CAP.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<label for="meilleur-coureur-vitesse">Qui courra le plus vite :</label>
+<select id="meilleur-coureur-vitesse" name="meilleur-coureur-vitesse" required=""><option value="">Sélectionnez un participant</option></select>
+<div class="tours-container">
+<label for="meilleur-coureur-tours-nom">Qui fera le plus de tours :</label>
+<select id="meilleur-coureur-tours-nom" name="meilleur-coureur-tours-nom" required=""><option value="">Sélectionnez un participant</option></select>
+<input id="meilleur-coureur-tours-nombre" min="0" name="meilleur-coureur-tours-nombre" placeholder="Nombre de tours" required="" type="number"/>
+</div>
+</div>
+<!-- Autres paris -->
+<div class="cadre-section">
+<img alt="Image cig" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CIG.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<label for="meilleur-fumeur">Plus de clopes fumées :</label>
+<select id="meilleur-fumeur" name="meilleur-fumeur" required=""><option value="">Sélectionnez un participant</option></select>
+<label for="meilleur-buveur">Plus de bières descendues :</label>
+<select id="meilleur-buveur" name="meilleur-buveur" required=""><option value="">Sélectionnez un participant</option></select></div>
+<div class="cadre-section">
+<img alt="Image sleep" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/SLEEP.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<label for="plus-gros-dormeur">Plus gros dormeur :</label>
+<select id="plus-gros-dormeur" name="plus-gros-dormeur" required=""><option value="">Sélectionnez un participant</option></select></div>
+<div class="cadre-section">
+<img alt="Image dnf" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/DNF.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<label>Qui abandonnera ?</label>
+<label for="abandon-blessure">Blessure :</label>
+<select id="abandon-blessure" name="abandon-blessure" required=""><option value="">Sélectionnez un participant</option></select>
+<label for="abandon-meteo">Méteo :</label>
+<select id="abandon-meteo" name="abandon-meteo" required=""><option value="">Sélectionnez un participant</option></select></div>
+<div class="cadre-section">
+<img alt="Image Perso" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PERSO.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<label>Ton meilleur temps : </label>
+<div class="points-container">
+<div class="point-input">
+<label for="points_perso_nat">Natation</label>
+<input id="points_perso_nat" min="0" name="points_perso_nat" required="" type="number"/>
+</div>
+<div class="point-input">
+<label for="points_perso_velo">Vélo</label>
+<input id="points_perso_velo" min="0" name="points_perso_velo" required="" type="number"/>
+</div>
+<div class="point-input">
+<label for="points_perso_cap">Course a pieds</label>
+<input id="points_perso_cap" min="0" name="points_perso_cap" required="" type="number"/>
+</div>
+</div>
+<label>Ton nombre de tours : </label>
+<div class="points-container">
+<div class="point-input">
+<label for="tour_perso_nat">Natation</label>
+<input id="tour_perso_nat" min="0" name="tour_perso_nat" required="" type="number"/>
+</div>
+<div class="point-input">
+<label for="tour_perso_velo">Vélo</label>
+<input id="tour_perso_velo" min="0" name="tour_perso_velo" required="" type="number"/>
+</div>
+<div class="point-input">
+<label for="tour_perso_cap">Course a pieds</label>
+<input id="tour_perso_cap" min="0" name="tour_perso_cap" required="" type="number"/>
+</div>
+</div>
+</div>
+<button type="submit">Soumettre le pari</button>
+</form>
+</div>
+<!-- Intégration de Canvas Confetti 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>-->
-    <!-- Intégration de SortableJS -->
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <!-- Intégration de Firebase -->
-    <script type="module">
+<!-- Intégration de SortableJS -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<!-- Intégration de Firebase -->
+<script type="module">
+        // Liste unique des participants
+        const participants = [
+            "Alexis", "Baptiste", "Kevin", "Maxime", "Anthony", "Antoine", "François",
+            "Julien G", "Julien R", "Pierre-Jean", "Teddy", "Encore un à définir"
+        ];
+
+        // IDs des champs select à remplir
+        const participantSelectIds = ['participant', 'meilleur-nageur-vitesse', 'meilleur-nageur-tours-nom', 'meilleur-rouleur-vitesse', 'meilleur-rouleur-tours-nom', 'meilleur-coureur-vitesse', 'meilleur-coureur-tours-nom', 'meilleur-fumeur', 'meilleur-buveur', 'plus-gros-dormeur', 'abandon-blessure', 'abandon-meteo'];
+
+        // Remplit dynamiquement tous les select
+        function remplirSelectParticipants() {
+            participantSelectIds.forEach(id => {
+                const select = document.getElementById(id);
+                if (select) {
+                    select.innerHTML = '<option value="">Sélectionnez un participant</option>';
+                    participants.forEach(prenom => {
+                        const opt = document.createElement('option');
+                        opt.value = prenom;
+                        opt.textContent = prenom;
+                        select.appendChild(opt);
+                    });
+                }
+            });
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function () {
+            // Remplit les selects avec la liste centralisée
+            remplirSelectParticipants();
+
+            // Initialiser SortableJS
+            const podium = document.getElementById('podium');
+            Sortable.create(podium, {
+                animation: 150,
+                ghostClass: 'ghost',
+                onEnd: function (evt) {
+                    console.log('Ordre mis à jour :', Array.from(podium.children).map(el => el.dataset.team));
+                }
+            });
+        });
+
+        
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
         import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
