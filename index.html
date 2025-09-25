@@ -1,480 +1,250 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Pronostics T24 BORMES 2025</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
 <style>
-        /* Styles de base */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .icon {
-            margin-right: 10px;
-            color: #3498db;
-        }
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 30px;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        subLabel {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: lighter;
-        }
-        select, input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        #podium {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .pillule {
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border-radius: 20px;
-            cursor: grab;
-            text-align: center;
-            user-select: none;
-        }
-        .pillule:active {
-            cursor: grabbing;
-        }
-        .ghost {
-            opacity: 0.5;
-            background-color: #ccc;
-        }
-        .cadre-section {
-            border: 2px solid #000080;
-            border-radius: 15px;
-            padding: 5px;
-            margin: 20px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Media queries pour les petits écrans */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            .container {
-                padding: 10px;
-            }
-            form {
-                padding: 10px;
-            }
-            select, input {
-                width: 100%;
-                margin-bottom: 15px;
-            }
-            .cadre-section {
-                margin: 10px 0;
-            }
-            .pillule {
-                padding: 8px 16px;
-                font-size: 0.9em;
-            }
-        }
-        .points-container {
-            display: flex;
-            gap: 5px;
-            align-items: stretch;
-        }
-        .point-input {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border-radius: 8px;
-            padding: 10px;
-        }
-        .point-input label {
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .point-input input {
-            width: 100%;
-            padding: 5px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            text-align: center;
-            margin-left: -5px;
-        }
-        .tours-container {
-            display: flex;
-            gap: 5px;
-            align-items: stretch;
-        }
-        .tour-input {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border-radius: 8px;
-            padding: 0px;
-        }
-        .tour-input label {
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .tour-input select {
-            width: 80%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            text-align: center;
-            margin-left: 10px;
-            margin-top: 20px;
-        }
-        .tour-input input {
-            width: 80%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            text-align: center;
-            margin-left: 10px;
-        }
-    </style>
+body { font-family: 'Roboto', sans-serif; background-color: #f4f4f9; margin:0; padding:20px; color:#333;}
+h1 { text-align:center; color:#2c3e50; font-size:2.5em; margin-bottom:20px;}
+.container { max-width:800px; margin:0 auto; background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+label { display:block; margin-bottom:10px; font-weight:bold;}
+select, input { width:100%; padding:10px; margin-bottom:20px; border-radius:4px; border:1px solid #ccc;}
+button { width:100%; padding:12px; background-color:#007bff; color:white; border:none; border-radius:5px; cursor:pointer; font-size:1em;}
+button:hover { background-color:#218838;}
+#podium { display:flex; flex-direction:column; gap:10px; margin-bottom:20px;}
+.pillule { padding:10px 20px; background-color:#3498db; color:white; border-radius:20px; cursor:grab; text-align:center; user-select:none;}
+.pillule:active { cursor:grabbing;}
+.ghost { opacity:0.5; background-color:#ccc;}
+.cadre-section { border:2px solid #000080; border-radius:15px; padding:5px; margin:20px 0; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.points-container { display:flex; gap:5px; align-items:stretch;}
+.point-input { flex:1; display:flex; flex-direction:column; justify-content:space-between; border-radius:8px; padding:10px;}
+.point-input label { font-weight:bold; margin-bottom:10px; text-align:center;}
+.point-input input { width:100%; padding:5px; border-radius:4px; border:1px solid #ccc; text-align:center; margin-left:-5px;}
+.tours-container { display:flex; gap:5px; align-items:stretch;}
+.tour-input { flex:1; display:flex; flex-direction:column; justify-content:space-between; border-radius:8px; padding:0;}
+.tour-input label { font-weight:bold; margin-bottom:10px; text-align:center;}
+.tour-input select, .tour-input input { width:80%; padding:10px; border-radius:4px; border:1px solid #ccc; text-align:center; margin-left:10px;}
+</style>
 </head>
 <body>
-<!--<h1>Pronostics T24 BORMES 2025</h1>-->
 <div class="container">
-<img alt="Image paris" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PARIS.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
-<!-- Formulaire de paris -->
+<h1>Pronostics T24 BORMES 2025</h1>
 <form id="betForm">
 <label for="participant">Votre nom :</label>
-<select id="participant" name="participant" required=""><option value="">Sélectionnez un participant</option></select>
+<select id="participant" name="participant" required><option value="">Sélectionnez un participant</option></select>
+
+<label for="password">Mot de passe :</label>
+<input type="password" id="password" name="password" required placeholder="Choisissez ou entrez votre mot de passe"/>
+
+<!-- Podium -->
 <div class="cadre-section">
-<img alt="Image Podium" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PODIUM.png" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PODIUM.png" style="width:100%; border-radius:15px; margin-bottom:20px;">
 <div id="podium">
 <div class="pillule" data-team="Quadricolor...Les quatres couleurs primaires">Quadricolor...Les quatres couleurs primaires</div>
 <div class="pillule" data-team="Les San'slips">Les San'slips</div>
 <div class="pillule" data-team="La Pepouze team">La Pepouze team</div>
 </div>
-<label>Nombre de points par équipe : </label>
+<label>Nombre de points par équipe :</label>
 <div class="points-container">
 <div class="point-input">
 <label for="points_quadri">Quadricolor</label>
-<input id="points_quadri" min="0" name="points_quadri" required="" type="number"/>
+<input id="points_quadri" min="0" name="points_quadri" required type="number"/>
 </div>
 <div class="point-input">
 <label for="points_san">Les San'slips</label>
-<input id="points_san" min="0" name="points_san" required="" type="number"/>
+<input id="points_san" min="0" name="points_san" required type="number"/>
 </div>
 <div class="point-input">
 <label for="points_pep">La Pepouze team</label>
-<input id="points_pep" min="0" name="points_pep" required="" type="number"/>
+<input id="points_pep" min="0" name="points_pep" required type="number"/>
 </div>
 </div>
 </div>
-<!-- Paris natation -->
+
+<!-- Natation -->
 <div class="cadre-section">
-<img alt="Image Natation" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/NATATION.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/NATATION.jpg" style="width:100%; border-radius:15px; margin-bottom:20px;">
 <label for="meilleur-nageur-vitesse">Qui nagera le plus vite :</label>
-<select id="meilleur-nageur-vitesse" name="meilleur-nageur-vitesse" required=""><option value="">Sélectionnez un participant</option></select>
+<select id="meilleur-nageur-vitesse" name="meilleur-nageur-vitesse" required><option value="">Sélectionnez un participant</option></select>
 <div class="tours-container">
 <label for="meilleur-nageur-tours-nom">Qui fera le plus de tours :</label>
-<select id="meilleur-nageur-tours-nom" name="meilleur-nageur-tours-nom" required=""><option value="">Sélectionnez un participant</option></select>
-<input id="meilleur-nageur-tours-nombre" min="0" name="meilleur-nageur-tours-nombre" placeholder="Nombre de tours" required="" type="number"/>
+<select id="meilleur-nageur-tours-nom" name="meilleur-nageur-tours-nom" required><option value="">Sélectionnez un participant</option></select>
+<input id="meilleur-nageur-tours-nombre" min="0" name="meilleur-nageur-tours-nombre" placeholder="Nombre de tours" required type="number"/>
 </div>
 </div>
-<!-- Paris vélo -->
+
+<!-- Vélo -->
 <div class="cadre-section">
-<img alt="Image Vélo" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/VELO.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/VELO.jpg" style="width:100%; border-radius:15px; margin-bottom:20px;">
 <label for="meilleur-rouleur-vitesse">Qui roulera le plus vite :</label>
-<select id="meilleur-rouleur-vitesse" name="meilleur-rouleur-vitesse" required=""><option value="">Sélectionnez un participant</option></select>
+<select id="meilleur-rouleur-vitesse" name="meilleur-rouleur-vitesse" required><option value="">Sélectionnez un participant</option></select>
 <div class="tours-container">
 <label for="meilleur-rouleur-tours-nom">Qui fera le plus de tours :</label>
-<select id="meilleur-rouleur-tours-nom" name="meilleur-rouleur-tours-nom" required=""><option value="">Sélectionnez un participant</option></select>
-<input id="meilleur-rouleur-tours-nombre" min="0" name="meilleur-rouleur-tours-nombre" placeholder="Nombre de tours" required="" type="number"/>
+<select id="meilleur-rouleur-tours-nom" name="meilleur-rouleur-tours-nom" required><option value="">Sélectionnez un participant</option></select>
+<input id="meilleur-rouleur-tours-nombre" min="0" name="meilleur-rouleur-tours-nombre" placeholder="Nombre de tours" required type="number"/>
 </div>
 </div>
-<!-- Paris course à pied -->
+
+<!-- Course à pied -->
 <div class="cadre-section">
-<img alt="Image CAP" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CAP.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CAP.jpg" style="width:100%; border-radius:15px; margin-bottom:20px;">
 <label for="meilleur-coureur-vitesse">Qui courra le plus vite :</label>
-<select id="meilleur-coureur-vitesse" name="meilleur-coureur-vitesse" required=""><option value="">Sélectionnez un participant</option></select>
+<select id="meilleur-coureur-vitesse" name="meilleur-coureur-vitesse" required><option value="">Sélectionnez un participant</option></select>
 <div class="tours-container">
 <label for="meilleur-coureur-tours-nom">Qui fera le plus de tours :</label>
-<select id="meilleur-coureur-tours-nom" name="meilleur-coureur-tours-nom" required=""><option value="">Sélectionnez un participant</option></select>
-<input id="meilleur-coureur-tours-nombre" min="0" name="meilleur-coureur-tours-nombre" placeholder="Nombre de tours" required="" type="number"/>
+<select id="meilleur-coureur-tours-nom" name="meilleur-coureur-tours-nom" required><option value="">Sélectionnez un participant</option></select>
+<input id="meilleur-coureur-tours-nombre" min="0" name="meilleur-coureur-tours-nombre" placeholder="Nombre de tours" required type="number"/>
 </div>
 </div>
+
 <!-- Autres paris -->
 <div class="cadre-section">
-<img alt="Image cig" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CIG.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/CIG.jpg" style="width:100%; border-radius:15px; margin-bottom:20px;">
 <label for="meilleur-fumeur">Plus de clopes fumées :</label>
-<select id="meilleur-fumeur" name="meilleur-fumeur" required=""><option value="">Sélectionnez un participant</option></select>
+<select id="meilleur-fumeur" name="meilleur-fumeur" required><option value="">Sélectionnez un participant</option></select>
 <label for="meilleur-buveur">Plus de bières descendues :</label>
-<select id="meilleur-buveur" name="meilleur-buveur" required=""><option value="">Sélectionnez un participant</option></select></div>
+<select id="meilleur-buveur" name="meilleur-buveur" required><option value="">Sélectionnez un participant</option></select>
+</div>
+
 <div class="cadre-section">
-<img alt="Image sleep" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/SLEEP.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/SLEEP.jpg" style="width:100%; border-radius:15px; margin-bottom:20px;">
 <label for="plus-gros-dormeur">Plus gros dormeur :</label>
-<select id="plus-gros-dormeur" name="plus-gros-dormeur" required=""><option value="">Sélectionnez un participant</option></select></div>
+<select id="plus-gros-dormeur" name="plus-gros-dormeur" required><option value="">Sélectionnez un participant</option></select>
+</div>
+
 <div class="cadre-section">
-<img alt="Image dnf" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/DNF.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/DNF.jpg" style="width:100%; border-radius:15px; margin-bottom:20px;">
 <label>Qui abandonnera ?</label>
 <label for="abandon-blessure">Blessure :</label>
-<select id="abandon-blessure" name="abandon-blessure" required=""><option value="">Sélectionnez un participant</option></select>
+<select id="abandon-blessure" name="abandon-blessure" required><option value="">Sélectionnez un participant</option></select>
 <label for="abandon-meteo">Méteo :</label>
-<select id="abandon-meteo" name="abandon-meteo" required=""><option value="">Sélectionnez un participant</option></select></div>
+<select id="abandon-meteo" name="abandon-meteo" required><option value="">Sélectionnez un participant</option></select>
+</div>
+
+<!-- Ton meilleur temps et nombre de tours -->
 <div class="cadre-section">
-<img alt="Image Perso" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PERSO.png" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
+<img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PERSO.png" style="width:100%; border-radius:15px; margin-bottom:20px;">
 <label>Ton meilleur temps : </label>
 <div class="points-container">
 <div class="point-input">
 <label for="points_perso_nat">Natation</label>
-<input id="points_perso_nat" min="0" name="points_perso_nat" required="" type="number"/>
+<input id="points_perso_nat" min="0" name="points_perso_nat" required type="number"/>
 </div>
 <div class="point-input">
 <label for="points_perso_velo">Vélo</label>
-<input id="points_perso_velo" min="0" name="points_perso_velo" required="" type="number"/>
+<input id="points_perso_velo" min="0" name="points_perso_velo" required type="number"/>
 </div>
 <div class="point-input">
-<label for="points_perso_cap">Course a pieds</label>
-<input id="points_perso_cap" min="0" name="points_perso_cap" required="" type="number"/>
+<label for="points_perso_cap">Course à pieds</label>
+<input id="points_perso_cap" min="0" name="points_perso_cap" required type="number"/>
 </div>
 </div>
 <label>Ton nombre de tours : </label>
 <div class="points-container">
 <div class="point-input">
 <label for="tour_perso_nat">Natation</label>
-<input id="tour_perso_nat" min="0" name="tour_perso_nat" required="" type="number"/>
+<input id="tour_perso_nat" min="0" name="tour_perso_nat" required type="number"/>
 </div>
 <div class="point-input">
 <label for="tour_perso_velo">Vélo</label>
-<input id="tour_perso_velo" min="0" name="tour_perso_velo" required="" type="number"/>
+<input id="tour_perso_velo" min="0" name="tour_perso_velo" required type="number"/>
 </div>
 <div class="point-input">
-<label for="tour_perso_cap">Course a pieds</label>
-<input id="tour_perso_cap" min="0" name="tour_perso_cap" required="" type="number"/>
+<label for="tour_perso_cap">Course à pieds</label>
+<input id="tour_perso_cap" min="0" name="tour_perso_cap" required type="number"/>
 </div>
 </div>
 </div>
+
 <button type="submit">Soumettre le pari</button>
 </form>
 </div>
-<!-- Intégration de Canvas Confetti 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>-->
-<!-- Intégration de SortableJS -->
+
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-<!-- Intégration de Firebase -->
 <script type="module">
-        // Liste unique des participants
-        const participants = [
-            "LeBatou8", "Pejos", "Teddy", "La Bourle", "Kresp", "Max Mo", "Sancy",
-            "JuJu", "La Roume", "Tut", "LaGav"
-        ];
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
-        // IDs des champs select à remplir
-        const participantSelectIds = ['participant', 'meilleur-nageur-vitesse', 'meilleur-nageur-tours-nom', 'meilleur-rouleur-vitesse', 'meilleur-rouleur-tours-nom', 'meilleur-coureur-vitesse', 'meilleur-coureur-tours-nom', 'meilleur-fumeur', 'meilleur-buveur', 'plus-gros-dormeur', 'abandon-blessure', 'abandon-meteo'];
+const firebaseConfig = {
+    apiKey: "AIzaSyDIClGO9pdfLBDmNHtTFAxgrzx45d4H7rk",
+    authDomain: "paris-du-t24.firebaseapp.com",
+    databaseURL: "https://paris-du-t24-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "paris-du-t24",
+    storageBucket: "paris-du-t24.firebasedatabase.app",
+    messagingSenderId: "726232759474",
+    appId: "1:726232759474:web:b6c56cf19fedfe8e489dab",
+    measurementId: "G-3FVQ4L7M5W"
+};
 
-        // Remplit dynamiquement tous les select
-        function remplirSelectParticipants() {
-            participantSelectIds.forEach(id => {
-                const select = document.getElementById(id);
-                if (select) {
-                    select.innerHTML = '<option value="">Sélectionnez un participant</option>';
-                    participants.forEach(prenom => {
-                        const opt = document.createElement('option');
-                        opt.value = prenom;
-                        opt.textContent = prenom;
-                        select.appendChild(opt);
-                    });
-                }
-            });
-        }
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', function () {
-            // Remplit les selects avec la liste centralisée
-            remplirSelectParticipants();
+const participants = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
+const participantSelect = document.getElementById('participant');
+participants.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p;
+    opt.textContent = p;
+    participantSelect.appendChild(opt);
+});
 
-            // Initialiser SortableJS
-            const podium = document.getElementById('podium');
-            Sortable.create(podium, {
-                animation: 150,
-                ghostClass: 'ghost',
-                onEnd: function (evt) {
-                    console.log('Ordre mis à jour :', Array.from(podium.children).map(el => el.dataset.team));
-                }
-            });
-        });
+// Sortable podium
+const podium = document.getElementById('podium');
+Sortable.create(podium, {animation:150, ghostClass:'ghost'});
 
-        
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+// Formulaire
+document.getElementById('betForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const participant = document.getElementById('participant').value;
+    const password = document.getElementById('password').value;
+    const podiumTeams = Array.from(podium.children).map(el=>el.dataset.team);
+    const [firstPlace, secondPlace, thirdPlace] = podiumTeams;
+    if(!firstPlace || !secondPlace || !thirdPlace){ alert("Veuillez définir l'ordre du podium"); return; }
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDIClGO9pdfLBDmNHtTFAxgrzx45d4H7rk",
-            authDomain: "paris-du-t24.firebaseapp.com",
-            databaseURL: "https://paris-du-t24-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "paris-du-t24",
-            storageBucket: "paris-du-t24.firebasestorage.app",
-            messagingSenderId: "726232759474",
-            appId: "1:726232759474:web:b6c56cf19fedfe8e489dab",
-            measurementId: "G-3FVQ4L7M5W"
-        };
+    const betRef = ref(database, 'bets/' + participant);
+    const snapshot = await get(betRef);
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+    if(snapshot.exists() && snapshot.val().password !== password){
+        alert("Mot de passe incorrect pour ce participant"); 
+        return;
+    }
 
-        // Initialiser SortableJS pour les pillules
-        document.addEventListener('DOMContentLoaded', function () {
-            const podium = document.getElementById('podium');
-            Sortable.create(podium, {
-                animation: 150,
-                ghostClass: 'ghost',
-                onEnd: function (evt) {
-                    console.log('Ordre mis à jour :', Array.from(podium.children).map(el => el.dataset.team));
-                }
-            });
-        });
+    const betData = {
+        participant,
+        password,
+        firstPlace, secondPlace, thirdPlace,
+        points_quadri: document.getElementById('points_quadri').value,
+        points_san: document.getElementById('points_san').value,
+        points_pep: document.getElementById('points_pep').value,
+        meilleurNageurVitesse: document.getElementById('meilleur-nageur-vitesse').value,
+        meilleurNageurToursNom: document.getElementById('meilleur-nageur-tours-nom').value,
+        meilleurNageurToursNombre: document.getElementById('meilleur-nageur-tours-nombre').value,
+        meilleurRouleurVitesse: document.getElementById('meilleur-rouleur-vitesse').value,
+        meilleurRouleurToursNom: document.getElementById('meilleur-rouleur-tours-nom').value,
+        meilleurRouleurToursNombre: document.getElementById('meilleur-rouleur-tours-nombre').value,
+        meilleurCoureurVitesse: document.getElementById('meilleur-coureur-vitesse').value,
+        meilleurCoureurToursNom: document.getElementById('meilleur-coureur-tours-nom').value,
+        meilleurCoureurToursNombre: document.getElementById('meilleur-coureur-tours-nombre').value,
+        meilleurFumeur: document.getElementById('meilleur-fumeur').value,
+        meilleurBuveur: document.getElementById('meilleur-buveur').value,
+        plusGrosDormeur: document.getElementById('plus-gros-dormeur').value,
+        abandonBlessure: document.getElementById('abandon-blessure').value,
+        abandonMeteo: document.getElementById('abandon-meteo').value,
+        points_perso_nat: document.getElementById('points_perso_nat').value,
+        points_perso_velo: document.getElementById('points_perso_velo').value,
+        points_perso_cap: document.getElementById('points_perso_cap').value,
+        tour_perso_nat: document.getElementById('tour_perso_nat').value,
+        tour_perso_velo: document.getElementById('tour_perso_velo').value,
+        tour_perso_cap: document.getElementById('tour_perso_cap').value,
+        timestamp: new Date().toISOString()
+    };
 
-        // Gestion du formulaire de paris
-        document.getElementById('betForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const participant = document.getElementById('participant').value;
-            const podium = document.getElementById('podium');
-            const teams = Array.from(podium.children).map(el => el.dataset.team);
-
-            const firstPlace = teams[0];
-            const secondPlace = teams[1];
-            const thirdPlace = teams[2];
-
-            if (!firstPlace || !secondPlace || !thirdPlace) {
-                alert('Veuillez définir l\'ordre du podium.');
-                return;
-            }
-
-            // Récupérer les valeurs des nouveaux paris
-            const meilleurNageurVitesse = document.getElementById('meilleur-nageur-vitesse').value;
-            const meilleurRouleurVitesse = document.getElementById('meilleur-rouleur-vitesse').value;
-            const meilleurCoureurVitesse = document.getElementById('meilleur-coureur-vitesse').value;
-
-            // Récupérer les valeurs pour les tours
-            const meilleurNageurToursNom = document.getElementById('meilleur-nageur-tours-nom').value;
-            const meilleurNageurToursNombre = document.getElementById('meilleur-nageur-tours-nombre').value;
-            const meilleurRouleurToursNom = document.getElementById('meilleur-rouleur-tours-nom').value;
-            const meilleurRouleurToursNombre = document.getElementById('meilleur-rouleur-tours-nombre').value;
-            const meilleurCoureurToursNom = document.getElementById('meilleur-coureur-tours-nom').value;
-            const meilleurCoureurToursNombre = document.getElementById('meilleur-coureur-tours-nombre').value;
-
-            const meilleurFumeur = document.getElementById('meilleur-fumeur').value;
-            const meilleurBuveur = document.getElementById('meilleur-buveur').value;
-            const plusGrosDormeur = document.getElementById('plus-gros-dormeur').value;
-            const abandonBlessure = document.getElementById('abandon-blessure').value;
-            const abandonMeteo = document.getElementById('abandon-meteo').value;
-            const pointquadri = document.getElementById('points_quadri').value;
-            const pointsan = document.getElementById('points_san').value;
-            const pointpep = document.getElementById('points_pep').value;
-            
-            const points_perso_nat = document.getElementById('points_perso_nat').value;
-            const points_perso_velo = document.getElementById('points_perso_velo').value;
-            const points_perso_cap = document.getElementById('points_perso_cap').value;
-            const tour_perso_nat = document.getElementById('tour_perso_nat').value;
-            const tour_perso_velo = document.getElementById('tour_perso_velo').value;
-            const tour_perso_cap = document.getElementById('tour_perso_cap').value;
-
-            // Enregistrer le pari dans Firebase
-            const betData = {
-                pointquadri: pointquadri,
-                pointsan: pointsan,
-                pointpep: pointpep,
-                participant: participant,
-                firstPlace: firstPlace,
-                secondPlace: secondPlace,
-                thirdPlace: thirdPlace,
-                meilleurNageurVitesse: meilleurNageurVitesse,
-                meilleurRouleurVitesse: meilleurRouleurVitesse,
-                meilleurCoureurVitesse: meilleurCoureurVitesse,
-                    meilleurNageurTours_nom: meilleurNageurToursNom,
-                    meilleurNageurTours_tours: meilleurNageurToursNombre,
-                    meilleurRouleurTours_nom: meilleurRouleurToursNom,
-                    meilleurRouleurTours_tours: meilleurRouleurToursNombre,
-                    meilleurCoureurTours_nom: meilleurCoureurToursNom,
-                    meilleurCoureurTours_tours: meilleurCoureurToursNombre,
-                meilleurFumeur: meilleurFumeur,
-                meilleurBuveur: meilleurBuveur,
-                plusGrosDormeur: plusGrosDormeur,
-                abandonBlessure: abandonBlessure,
-                abandonMeteo: abandonMeteo,
-                MDP_nat: points_perso_nat,
-                MDP_velo: points_perso_velo,
-                MDP_cap: points_perso_cap, 
-                MTP_nat: tour_perso_nat,
-                MTP_velo: tour_perso_velo,
-                MTP_cap: tour_perso_cap,
-                timestamp: new Date().toISOString()
-            };
-
-            push(ref(database, 'bets/'), betData)
-                .then(() => {
-                    alert(`Merci ${participant} pour ton pari !`);
-                })
-                .catch((error) => {
-                    console.error("Erreur lors de l'enregistrement du pari : ", error);
-                    alert("Une erreur s'est produite. Veuillez réessayer.");
-                });
-        });
-    </script>
+    set(betRef, betData).then(()=>{ alert(`Merci ${participant} pour ton pari !`); })
+    .catch(err=>{ console.error(err); alert("Erreur lors de l'enregistrement"); });
+});
+</script>
 </body>
 </html>
-
-
