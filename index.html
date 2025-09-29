@@ -188,16 +188,60 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-const participants = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
+// Deux listes distinctes
+const participantsPourParieurs = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
+const participantsPourPronostics = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
+
 const participantSelect = document.getElementById('participant');
 const customParticipantInput = document.getElementById('customParticipant');
 
-// Remplir la liste des participants
-participants.forEach(p => {
-    const opt = document.createElement('option');
-    opt.value = p;
-    opt.textContent = p;
-    participantSelect.appendChild(opt);
+// Fonction pour remplir un dropdown avec les participants
+function fillDropdown(selectElement, participantsList, includeOtherOption = false) {
+    // Vider le dropdown sauf la première option
+    while (selectElement.children.length > 1) {
+        selectElement.removeChild(selectElement.lastChild);
+    }
+    
+    // Ajouter tous les participants
+    participantsList.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p;
+        opt.textContent = p;
+        selectElement.appendChild(opt);
+    });
+    
+    // Ajouter l'option "Autre" si demandé
+    if (includeOtherOption) {
+        const otherOpt = document.createElement('option');
+        otherOpt.value = 'autre';
+        otherOpt.textContent = 'Autre (saisir votre nom)';
+        selectElement.appendChild(otherOpt);
+    }
+}
+
+// Remplir le premier dropdown (avec option "Autre")
+fillDropdown(participantSelect, participantsPourParieurs, true);
+
+// Remplir les autres dropdowns (sans option "Autre")
+const allDropdowns = [
+    'meilleur-nageur-vitesse',
+    'meilleur-nageur-tours-nom',
+    'meilleur-rouleur-vitesse',
+    'meilleur-rouleur-tours-nom',
+    'meilleur-coureur-vitesse',
+    'meilleur-coureur-tours-nom',
+    'meilleur-fumeur',
+    'meilleur-buveur',
+    'plus-gros-dormeur',
+    'abandon-blessure',
+    'abandon-meteo'
+];
+
+allDropdowns.forEach(dropdownId => {
+    const dropdown = document.getElementById(dropdownId);
+    if (dropdown) {
+        fillDropdown(dropdown, participantsPourPronostics, false);
+    }
 });
 
 // Gérer l'affichage du champ personnalisé
