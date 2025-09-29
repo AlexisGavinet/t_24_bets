@@ -173,7 +173,7 @@ const firebaseConfig = {
     authDomain: "paris-du-t24.firebaseapp.com",
     databaseURL: "https://paris-du-t24-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "paris-du-t24",
-    storageBucket: "paris-du-t24.firebasedatabase.app",
+    storageBucket: "paris-du-t24.firebasestorage.app",
     messagingSenderId: "726232759474",
     appId: "1:726232759474:web:b6c56cf19fedfe8e489dab",
     measurementId: "G-3FVQ4L7M5W"
@@ -182,24 +182,45 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+// Liste des participants
 const participants = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
-const participantSelect = document.getElementById('participant');
-participants.forEach(p => {
-    const opt = document.createElement('option');
-    opt.value = p;
-    opt.textContent = p;
-    participantSelect.appendChild(opt);
-});
 
-// Sortable podium
-const podium = document.getElementById('podium');
-Sortable.create(podium, {animation:150, ghostClass:'ghost'});
+// Remplit tous les selects du formulaire avec la liste des participants
+function remplirSelectsParticipants() {
+    // sélectionne uniquement les <select> à l'intérieur du formulaire #betForm
+    const selects = document.querySelectorAll('#betForm select');
+    selects.forEach(select => {
+        // vide et ajoute l'option par défaut
+        select.innerHTML = '<option value="">Sélectionnez un participant</option>';
+        // ajoute chaque participant
+        participants.forEach(p => {
+            const opt = document.createElement('option');
+            opt.value = p;
+            opt.textContent = p;
+            select.appendChild(opt);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    remplirSelectsParticipants();
+
+    // Initialise SortableJS sur le podium
+    const podium = document.getElementById('podium');
+    Sortable.create(podium, { animation: 150, ghostClass: 'ghost' });
+});
 
 // Formulaire
 document.getElementById('betForm').addEventListener('submit', async function(e){
     e.preventDefault();
+
     const participant = document.getElementById('participant').value;
     const password = document.getElementById('password').value;
+
+    if (!participant) { alert("Veuillez sélectionner votre nom."); return; }
+    if (!password) { alert("Veuillez entrer votre mot de passe."); return; }
+
+    const podium = document.getElementById('podium');
     const podiumTeams = Array.from(podium.children).map(el=>el.dataset.team);
     const [firstPlace, secondPlace, thirdPlace] = podiumTeams;
     if(!firstPlace || !secondPlace || !thirdPlace){ alert("Veuillez définir l'ordre du podium"); return; }
@@ -242,8 +263,9 @@ document.getElementById('betForm').addEventListener('submit', async function(e){
         timestamp: new Date().toISOString()
     };
 
-    set(betRef, betData).then(()=>{ alert(`Merci ${participant} pour ton pari !`); })
-    .catch(err=>{ console.error(err); alert("Erreur lors de l'enregistrement"); });
+    set(betRef, betData)
+        .then(()=>{ alert(`Merci ${participant} pour ton pari !`); document.getElementById('betForm').reset(); remplirSelectsParticipants(); })
+        .catch(err=>{ console.error(err); alert("Erreur lors de l'enregistrement"); });
 });
 </script>
 </body>
