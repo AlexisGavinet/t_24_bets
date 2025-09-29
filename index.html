@@ -124,7 +124,7 @@ button:hover { background-color:#218838;}
 <div class="cadre-section">
 <img src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/DNF.jpg" style="width:100%; border-radius:15px; margin-bottom:20px;">
 <label>Qui abandonnera ?</label>
-<label for="abandon-blessure">Blessure :</label>
+<label for="abandon-blessure">Blessure / Fatigue :</label>
 <select id="abandon-blessure" name="abandon-blessure" required><option value="">Sélectionnez un participant</option></select>
 <label for="abandon-meteo">Méteo :</label>
 <select id="abandon-meteo" name="abandon-meteo" required><option value="">Sélectionnez un participant</option></select>
@@ -203,36 +203,46 @@ async function loadParticipants() {
         
         if (snapshot.exists()) {
             const participantsData = snapshot.val();
-            participantsPourParieurs = Object.values(participantsData);
-            participantsPourPronostics = Object.values(participantsData);
+            // Convertir l'objet en tableau
+            const participantsArray = Object.values(participantsData);
+            
+            participantsPourParieurs = [...new Set([...participantsPourParieurs, ...participantsArray])];
+            participantsPourPronostics = [...new Set([...participantsPourPronostics, ...participantsArray])];
+            
+            console.log("Participants chargés:", participantsPourParieurs);
             
             // Mettre à jour les dropdowns
-            fillDropdown(participantSelect, participantsPourParieurs, true);
-            
-            const allDropdowns = [
-                'meilleur-nageur-vitesse',
-                'meilleur-nageur-tours-nom',
-                'meilleur-rouleur-vitesse',
-                'meilleur-rouleur-tours-nom',
-                'meilleur-coureur-vitesse',
-                'meilleur-coureur-tours-nom',
-                'meilleur-fumeur',
-                'meilleur-buveur',
-                'plus-gros-dormeur',
-                'abandon-blessure',
-                'abandon-meteo'
-            ];
-
-            allDropdowns.forEach(dropdownId => {
-                const dropdown = document.getElementById(dropdownId);
-                if (dropdown) {
-                    fillDropdown(dropdown, participantsPourPronostics, false);
-                }
-            });
+            updateAllDropdowns();
         }
     } catch (error) {
         console.error("Erreur lors du chargement des participants:", error);
     }
+}
+
+// Fonction pour mettre à jour tous les dropdowns
+function updateAllDropdowns() {
+    fillDropdown(participantSelect, participantsPourParieurs, true);
+    
+    const allDropdowns = [
+        'meilleur-nageur-vitesse',
+        'meilleur-nageur-tours-nom',
+        'meilleur-rouleur-vitesse',
+        'meilleur-rouleur-tours-nom',
+        'meilleur-coureur-vitesse',
+        'meilleur-coureur-tours-nom',
+        'meilleur-fumeur',
+        'meilleur-buveur',
+        'plus-gros-dormeur',
+        'abandon-blessure',
+        'abandon-meteo'
+    ];
+
+    allDropdowns.forEach(dropdownId => {
+        const dropdown = document.getElementById(dropdownId);
+        if (dropdown) {
+            fillDropdown(dropdown, participantsPourPronostics, false);
+        }
+    });
 }
 
 // Fonction pour sauvegarder un nouveau participant
@@ -257,8 +267,10 @@ async function saveNewParticipant(newParticipant) {
             });
             
             await set(participantsRef, participantsObject);
+            console.log("Nouveau participant sauvegardé:", newParticipant);
             return true;
         }
+        console.log("Participant déjà existant:", newParticipant);
         return false;
     } catch (error) {
         console.error("Erreur lors de la sauvegarde du participant:", error);
@@ -268,6 +280,9 @@ async function saveNewParticipant(newParticipant) {
 
 // Fonction pour remplir un dropdown avec les participants
 function fillDropdown(selectElement, participantsList, includeOtherOption = false) {
+    // Sauvegarder la valeur sélectionnée
+    const selectedValue = selectElement.value;
+    
     // Vider le dropdown sauf la première option
     while (selectElement.children.length > 1) {
         selectElement.removeChild(selectElement.lastChild);
@@ -288,34 +303,21 @@ function fillDropdown(selectElement, participantsList, includeOtherOption = fals
         otherOpt.textContent = 'Autre (saisir votre nom)';
         selectElement.appendChild(otherOpt);
     }
+    
+    // Restaurer la sélection si possible
+    if (selectedValue && participantsList.includes(selectedValue)) {
+        selectElement.value = selectedValue;
+    }
 }
 
-// Charger les participants au démarrage
-loadParticipants();
+// Initialiser l'application
+async function initApp() {
+    await loadParticipants();
+    updateAllDropdowns();
+}
 
-// Remplir les dropdowns initialement
-fillDropdown(participantSelect, participantsPourParieurs, true);
-
-const allDropdowns = [
-    'meilleur-nageur-vitesse',
-    'meilleur-nageur-tours-nom',
-    'meilleur-rouleur-vitesse',
-    'meilleur-rouleur-tours-nom',
-    'meilleur-coureur-vitesse',
-    'meilleur-coureur-tours-nom',
-    'meilleur-fumeur',
-    'meilleur-buveur',
-    'plus-gros-dormeur',
-    'abandon-blessure',
-    'abandon-meteo'
-];
-
-allDropdowns.forEach(dropdownId => {
-    const dropdown = document.getElementById(dropdownId);
-    if (dropdown) {
-        fillDropdown(dropdown, participantsPourPronostics, false);
-    }
-});
+// Appeler l'initialisation au chargement
+initApp();
 
 // Gérer l'affichage du champ personnalisé
 participantSelect.addEventListener('change', function() {
