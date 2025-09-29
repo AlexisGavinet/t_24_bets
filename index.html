@@ -36,7 +36,11 @@ button:hover { background-color:#218838;}
 <img alt="Image paris" src="https://raw.githubusercontent.com/AlexisGavinet/t_24_bets/main/PARIS.jpg" style="width: 100%; border-radius: 15px; display: block; margin: 0 auto 20px;"/>
 <form id="betForm">
 <label for="participant">Votre nom :</label>
-<select id="participant" name="participant" required><option value="">Sélectionnez un participant</option></select>
+<select id="participant" name="participant" required>
+    <option value="">Sélectionnez un participant</option>
+    <option value="autre">Autre (saisir votre nom)</option>
+</select>
+<input type="text" id="customParticipant" name="customParticipant" placeholder="Saisissez votre nom" style="display:none;"/>
 
 <label for="password">Mot de passe :</label>
 <input type="password" id="password" name="password" required placeholder="Choisissez ou entrez votre mot de passe"/>
@@ -186,11 +190,25 @@ const database = getDatabase(app);
 
 const participants = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
 const participantSelect = document.getElementById('participant');
+const customParticipantInput = document.getElementById('customParticipant');
+
+// Remplir la liste des participants
 participants.forEach(p => {
     const opt = document.createElement('option');
     opt.value = p;
     opt.textContent = p;
     participantSelect.appendChild(opt);
+});
+
+// Gérer l'affichage du champ personnalisé
+participantSelect.addEventListener('change', function() {
+    if (this.value === 'autre') {
+        customParticipantInput.style.display = 'block';
+        customParticipantInput.required = true;
+    } else {
+        customParticipantInput.style.display = 'none';
+        customParticipantInput.required = false;
+    }
 });
 
 // Sortable podium
@@ -200,7 +218,18 @@ Sortable.create(podium, {animation:150, ghostClass:'ghost'});
 // Formulaire
 document.getElementById('betForm').addEventListener('submit', async function(e){
     e.preventDefault();
-    const participant = document.getElementById('participant').value;
+    
+    let participant;
+    if (participantSelect.value === 'autre') {
+        participant = customParticipantInput.value.trim();
+        if (!participant) {
+            alert("Veuillez saisir votre nom");
+            return;
+        }
+    } else {
+        participant = participantSelect.value;
+    }
+    
     const password = document.getElementById('password').value;
     const podiumTeams = Array.from(podium.children).map(el=>el.dataset.team);
     const [firstPlace, secondPlace, thirdPlace] = podiumTeams;
