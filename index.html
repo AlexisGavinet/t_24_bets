@@ -188,12 +188,83 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Deux listes distinctes
-const participantsPourParieurs = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
-const participantsPourPronostics = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
+// Deux listes distinctes - initialement identiques
+let participantsPourParieurs = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
+let participantsPourPronostics = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
 
 const participantSelect = document.getElementById('participant');
 const customParticipantInput = document.getElementById('customParticipant');
+
+// Fonction pour charger les participants depuis Firebase
+async function loadParticipants() {
+    try {
+        const participantsRef = ref(database, 'participants');
+        const snapshot = await get(participantsRef);
+        
+        if (snapshot.exists()) {
+            const participantsData = snapshot.val();
+            participantsPourParieurs = Object.values(participantsData);
+            participantsPourPronostics = Object.values(participantsData);
+            
+            // Mettre à jour les dropdowns
+            fillDropdown(participantSelect, participantsPourParieurs, true);
+            
+            const allDropdowns = [
+                'meilleur-nageur-vitesse',
+                'meilleur-nageur-tours-nom',
+                'meilleur-rouleur-vitesse',
+                'meilleur-rouleur-tours-nom',
+                'meilleur-coureur-vitesse',
+                'meilleur-coureur-tours-nom',
+                'meilleur-fumeur',
+                'meilleur-buveur',
+                'plus-gros-dormeur',
+                'abandon-blessure',
+                'abandon-meteo'
+            ];
+
+            allDropdowns.forEach(dropdownId => {
+                const dropdown = document.getElementById(dropdownId);
+                if (dropdown) {
+                    fillDropdown(dropdown, participantsPourPronostics, false);
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Erreur lors du chargement des participants:", error);
+    }
+}
+
+// Fonction pour sauvegarder un nouveau participant
+async function saveNewParticipant(newParticipant) {
+    try {
+        const participantsRef = ref(database, 'participants');
+        const snapshot = await get(participantsRef);
+        
+        let participantsList = [];
+        if (snapshot.exists()) {
+            participantsList = Object.values(snapshot.val());
+        }
+        
+        // Ajouter le nouveau participant s'il n'existe pas déjà
+        if (!participantsList.includes(newParticipant)) {
+            participantsList.push(newParticipant);
+            
+            // Convertir en objet pour Firebase
+            const participantsObject = {};
+            participantsList.forEach((participant, index) => {
+                participantsObject[index] = participant;
+            });
+            
+            await set(participantsRef, participantsObject);
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error("Erreur lors de la sauvegarde du participant:", error);
+        return false;
+    }
+}
 
 // Fonction pour remplir un dropdown avec les participants
 function fillDropdown(selectElement, participantsList, includeOtherOption = false) {
@@ -219,10 +290,12 @@ function fillDropdown(selectElement, participantsList, includeOtherOption = fals
     }
 }
 
-// Remplir le premier dropdown (avec option "Autre")
+// Charger les participants au démarrage
+loadParticipants();
+
+// Remplir les dropdowns initialement
 fillDropdown(participantSelect, participantsPourParieurs, true);
 
-// Remplir les autres dropdowns (sans option "Autre")
 const allDropdowns = [
     'meilleur-nageur-vitesse',
     'meilleur-nageur-tours-nom',
@@ -264,12 +337,15 @@ document.getElementById('betForm').addEventListener('submit', async function(e){
     e.preventDefault();
     
     let participant;
+    let isNewParticipant = false;
+    
     if (participantSelect.value === 'autre') {
         participant = customParticipantInput.value.trim();
         if (!participant) {
             alert("Veuillez saisir votre nom");
             return;
         }
+        isNewParticipant = true;
     } else {
         participant = participantSelect.value;
     }
@@ -285,6 +361,15 @@ document.getElementById('betForm').addEventListener('submit', async function(e){
     if(snapshot.exists() && snapshot.val().password !== password){
         alert("Mot de passe incorrect pour ce participant"); 
         return;
+    }
+
+    // Sauvegarder le nouveau participant si c'est un nouveau nom
+    if (isNewParticipant) {
+        const saved = await saveNewParticipant(participant);
+        if (saved) {
+            // Recharger la liste des participants
+            await loadParticipants();
+        }
     }
 
     const betData = {
@@ -317,7 +402,12 @@ document.getElementById('betForm').addEventListener('submit', async function(e){
         timestamp: new Date().toISOString()
     };
 
-    set(betRef, betData).then(()=>{ alert(`Merci ${participant} pour ton pari !`); })
+    set(betRef, betData).then(()=>{ 
+        alert(`Merci ${participant} pour ton pari !`);
+        // Réinitialiser le formulaire
+        document.getElementById('betForm').reset();
+        customParticipantInput.style.display = 'none';
+    })
     .catch(err=>{ console.error(err); alert("Erreur lors de l'enregistrement"); });
 });
 </script>
