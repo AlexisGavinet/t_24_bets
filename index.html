@@ -189,8 +189,8 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // Deux listes distinctes - initialement identiques
-let participantsPourParieurs = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
-let participantsPourPronostics = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav"];
+let participantsPourParieurs = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav","La Tote"];
+let participantsPourPronostics = ["LeBatou8","Pejos","Teddy","La Bourle","Kresp","Max Mo","Sancy","JuJu","La Roume","Tut","LaGav","La Tote"];
 
 const participantSelect = document.getElementById('participant');
 const customParticipantInput = document.getElementById('customParticipant');
@@ -415,3 +415,4 @@ document.getElementById('betForm').addEventListener('submit', async function(e){
 </script>
 </body>
 </html>
+
